@@ -1,0 +1,51 @@
+name: sheng verified root
+on:
+  workflow_dispatch:
+
+jobs:
+  verified-root:
+    runs-on: macos-26
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download and unpack the disk images
+        run: |
+          curl -sL -o ipsw.zip "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/122-77166/DCA6CFE8-90E9-4B92-880D-3DE171798E40/iPad_Pro_HFR_17.7.11_21H461_Restore.ipsw"
+          unzip -o ipsw.zip "044-76040-038.dmg" "044-76034-038.dmg"
+          mkdir -p .cache/firmware/target-volumes
+          mv 044-76040-038.dmg 044-76034-038.dmg .cache/firmware/target-volumes/
+          rm ipsw.zip
+          df -h /
+
+      - name: Build the VerifiedRoot host provider and owner keys
+        run: |
+          python3 kits/VerifiedRoot/tests/check.py --output build/verified-root-host --openssl-prefix "$(brew --prefix openssl@3)"
+
+      - name: Attach the OS image and link os-mount
+        run: |
+          MP=$(hdiutil attach -readonly -nobrowse .cache/firmware/target-volumes/044-76040-038.dmg | awk -F'\t' '$NF ~ /Volumes/ {print $NF}')
+          echo "Mounted at $MP"
+          ln -s "$MP" .cache/firmware/target-volumes/os-mount
+          ls -la "$MP/sbin/launchd"
+
+      - name: Verify the OS policy
+        run: python3 scripts/build-owner-os-policy.py
+
+      - name: Verify the SystemOS policy
+        run: python3 .github/helpers/systemos-policy.py
+
+      - name: Build the verified root bundle
+        run: |
+          python3 scripts/build-verified-root-probe.py --component os --include-systemos
+          ls -la build/verified-root-os-xnu-bundle/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sheng-verified-root
+          path: |
+            build/verified-root-os-xnu-bundle/
+            build/verified-root-os/verification.json
+            build/verified-root-systemos/verification.json
+          if-no-files-found: error
