@@ -29,9 +29,14 @@ jobs:
       - name: Build the Data seed fixture
         run: |
           python3 scripts/prepare-owner-data-fixture.py
-          python3 scripts/seed-data-grow.py --gib 8 build/owner-data-fixture/owner-data-32.cdr sheng-data-8g.dbr
-          ls -la build/owner-data-fixture
-          ls -la sheng-data-8g.dbr
+          python3 - <<'PY'
+          import sys
+          sys.path.insert(0, 'drivers/DarwinBoot/Test')
+          import packed_ramdisk
+          packed_ramdisk.pack('build/owner-data-fixture/owner-data-32.cdr', 'sheng-data-32m.dbr')
+          PY
+          python3 scripts/seed-data-grow.py --gib 8 sheng-data-32m.dbr sheng-data-8g.dbr
+          ls -la build/owner-data-fixture sheng-data-32m.dbr sheng-data-8g.dbr
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -40,5 +45,6 @@ jobs:
           path: |
             build/owner-data-fixture/owner-data-32.cdr
             build/owner-data-fixture/seed.json
+            sheng-data-32m.dbr
             sheng-data-8g.dbr
           if-no-files-found: error
