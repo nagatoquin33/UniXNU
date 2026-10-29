@@ -50,6 +50,6 @@ jobs:
           name: sheng-verified-root
           path: |
             build/verified-root-os-xnu-bundle/
-            build/verified-root-os/verification.json
-            build/verified-root-systemos/verification.json
+            build/verified-root-os/
+            build/verified-root-systemos/
           if-no-files-found: error
