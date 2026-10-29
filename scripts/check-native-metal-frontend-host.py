@@ -62,6 +62,17 @@ run = subprocess.run([str(scanout), loader, str(cache)], capture_output=True, te
 if run.returncode or not any(l.startswith('PASS') for l in run.stdout.splitlines()):
     sys.exit('the GPU scanout check failed; see %s' % (OUT / 'scanout_host.log'))
 print([l for l in run.stdout.splitlines() if l.startswith('PASS')][0])
+# Apple's extended-range render targets (XrTargetsCheck.h): the bridge's bytes match the host's Metal and the ones the plugin's on-device
+# check expects.
+xr = OUT / 'xr_planes_host'
+subprocess.run(['xcrun', 'clang++', *flags, KIT / 'NativeBridgeMetalFrontend.mm', KIT / 'bridge/xr_planes_host.mm',
+                ROOT / 'build/adreno-metal-bridge/host/libadreno_metal_bridge.a', '-framework', 'Foundation', '-framework', 'Metal',
+                '-framework', 'IOSurface', '-framework', 'CoreFoundation', '-o', xr], check=True)
+run = subprocess.run([str(xr), loader, str(cache)], capture_output=True, text=True, timeout=600)
+(OUT / 'xr_planes_host.log').write_text(run.stdout + run.stderr)
+if run.returncode or not any(l.startswith('PASS') for l in run.stdout.splitlines()):
+    sys.exit('the extended-range target check failed; see %s' % (OUT / 'xr_planes_host.log'))
+print([l for l in run.stdout.splitlines() if l.startswith('PASS')][0])
 # Interleaved encoding must be attributed to its own command buffer, regardless of commit order.
 telemetry = OUT / 'telemetry_host'
 subprocess.run(['xcrun', 'clang++', *flags, '-Wno-unused-function', KIT / 'NativeBridgeMetalFrontend.mm', KIT / 'bridge/telemetry_host.mm',
