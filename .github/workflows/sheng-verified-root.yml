@@ -45,6 +45,7 @@ jobs:
           ls -la build/verified-root-os-xnu-bundle/
 
       - name: Upload artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: sheng-verified-root
@@ -52,4 +53,4 @@ jobs:
             build/verified-root-os-xnu-bundle/
             build/verified-root-os/
             build/verified-root-systemos/
-          if-no-files-found: error
+          if-no-files-found: warn
