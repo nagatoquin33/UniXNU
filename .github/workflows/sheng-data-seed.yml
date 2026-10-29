@@ -1,0 +1,42 @@
+name: sheng data seed
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: macos-26
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download and unpack the OS disk image
+        run: |
+          curl -sL -o ipsw.zip "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/122-77166/DCA6CFE8-90E9-4B92-880D-3DE171798E40/iPad_Pro_HFR_17.7.11_21H461_Restore.ipsw"
+          unzip -o ipsw.zip "044-76040-038.dmg"
+          rm ipsw.zip
+          df -h /
+
+      - name: Attach the OS image and link os-mount
+        run: |
+          MP=$(hdiutil attach -readonly -nobrowse 044-76040-038.dmg | awk -F'\t' '$NF ~ /Volumes/ {print $NF}')
+          echo "Mounted at $MP"
+          mkdir -p .cache/firmware/target-volumes
+          ln -s "$MP" .cache/firmware/target-volumes/os-mount
+          ls -la "$MP/sbin/launchd"
+
+      - name: Build the Data seed fixture
+        run: |
+          python3 scripts/prepare-owner-data-fixture.py
+          python3 scripts/seed-data-grow.py --gib 8 build/owner-data-fixture/owner-data-32.cdr sheng-data-8g.dbr
+          ls -la build/owner-data-fixture
+          ls -la sheng-data-8g.dbr
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sheng-data-seed
+          path: |
+            build/owner-data-fixture/owner-data-32.cdr
+            build/owner-data-fixture/seed.json
+            sheng-data-8g.dbr
+          if-no-files-found: error
