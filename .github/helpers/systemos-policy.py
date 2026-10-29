@@ -8,7 +8,7 @@ volume UUID is read once from a read-only attachment of the same image.
 import ctypes, hashlib, importlib.util, json, plistlib, subprocess, uuid
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 source = ROOT / ".cache/firmware/target-volumes/044-76034-038.dmg"
 out = ROOT / "build/verified-root-systemos"
 EXPECTED_SIZE = 3303014400
