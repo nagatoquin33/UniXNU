@@ -33,7 +33,8 @@ jobs:
           import sys
           sys.path.insert(0, 'drivers/DarwinBoot/Test')
           import packed_ramdisk
-          packed_ramdisk.pack('build/owner-data-fixture/owner-data-32.cdr', 'sheng-data-32m.dbr')
+          from pathlib import Path
+          packed_ramdisk.pack(Path('build/owner-data-fixture/owner-data-32.cdr'), Path('sheng-data-32m.dbr'))
           PY
           python3 scripts/seed-data-grow.py --gib 8 sheng-data-32m.dbr sheng-data-8g.dbr
           ls -la build/owner-data-fixture sheng-data-32m.dbr sheng-data-8g.dbr
