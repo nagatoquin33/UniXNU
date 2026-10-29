@@ -35,7 +35,9 @@ jobs:
         run: python3 scripts/build-owner-os-policy.py
 
       - name: Verify the SystemOS policy
-        run: python3 .github/helpers/systemos-policy.py
+        run: |
+          ls -la .cache/firmware/target-volumes/
+          python3 .github/helpers/systemos-policy.py
 
       - name: Build the verified root bundle
         run: |
