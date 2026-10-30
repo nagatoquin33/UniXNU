@@ -1,0 +1,254 @@
++ trap 'rc=$?; echo "::error::ci-metal-addon failed (rc=$rc) at line $LINENO"; exit $rc' ERR
++ echo '== host tools =='
+== host tools ==
++ brew install meson ninja glslang bison rustup llvm shaderc spirv-tools pkg-config vulkan-headers vulkan-loader
+[33mWarning:[0m ninja 1.13.2 is already installed and up-to-date.
+To reinstall 1.13.2, run:
+  brew reinstall ninja
+[33mWarning:[0m rustup 1.29.2 is already installed and up-to-date.
+To reinstall 1.29.2, run:
+  brew reinstall rustup
+[33mWarning:[0m pkgconf 3.0.10 is already installed and up-to-date.
+To reinstall 3.0.10, run:
+  brew reinstall pkgconf
+[32m==>[0m [1mDownloading bottle manifests[0m
+✔︎ Bottle Manifest meson (1.12.1)
+✔︎ Bottle Manifest glslang (16.6.0)
+✔︎ Bottle Manifest bison (3.8.2)
+✔︎ Bottle Manifest llvm (23.1.4)
+✔︎ Bottle Manifest shaderc (2026.4)
+✔︎ Bottle Manifest spirv-tools (1.4.363.0)
+✔︎ Bottle Manifest vulkan-headers (1.4.363.0)
+✔︎ Bottle Manifest vulkan-loader (1.4.363.0)
+[34m==>[0m [1mWould install 8 formulae:[0m
+meson           1.12.1
+glslang         16.6.0
+bison           3.8.2
+llvm            23.1.4
+shaderc         2026.4
+spirv-tools     1.4.363.0
+vulkan-headers  1.4.363.0
+vulkan-loader   1.4.363.0
+[34m==>[0m [1mWould install 2 dependencies for glslang:[0m
+spirv-headers  1.4.363.0
+spirv-tools    1.4.363.0
+[34m==>[0m [1mWould install 1 dependency for llvm:[0m
+z3 5.3.1
+[34m==>[0m [1mWould install 1 dependency for vulkan-loader:[0m
+vulkan-headers 1.4.363.0
+[32m==>[0m [1mFetching downloads for: [32mmeson[39m, [32mglslang[39m, [32mbison[39m, [32mllvm[39m, [32mshaderc[39m, [32mspirv-tools[39m, [32mvulkan-headers[39m and [32mvulkan-loader[39m[0m
+✔︎ Bottle glslang (16.6.0)
+✔︎ Bottle Manifest spirv-headers (1.4.363.0)
+✔︎ Bottle bison (3.8.2)
+✔︎ Bottle shaderc (2026.4)
+✔︎ Bottle spirv-tools (1.4.363.0)
+✔︎ Bottle Manifest z3 (5.3.1)
+✔︎ Bottle meson (1.12.1)
+✔︎ Bottle vulkan-headers (1.4.363.0)
+✔︎ Bottle vulkan-loader (1.4.363.0)
+✔︎ Bottle spirv-headers (1.4.363.0)
+✔︎ Bottle z3 (5.3.1)
+✔︎ Bottle llvm (23.1.4)
+[34m==>[0m [1mPouring meson--1.12.1.all.bottle.1.tar.gz[0m
+🍺  /opt/homebrew/Cellar/meson/1.12.1: 269 files, 4.4MB
+[32m==>[0m [1mInstalling dependencies for glslang:[0m [32mspirv-headers[39m and [32mspirv-tools[39m[0m
+[32m==>[0m [1mInstalling glslang dependency: [32mspirv-headers[39m (1.4.363.0)[0m
+[34m==>[0m [1mPouring spirv-headers--1.4.363.0.all.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/spirv-headers/1.4.363.0: 98 files, 3.8MB
+[32m==>[0m [1mInstalling glslang dependency: [32mspirv-tools[39m (1.4.363.0)[0m
+[34m==>[0m [1mPouring spirv-tools--1.4.363.0.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/spirv-tools/1.4.363.0: 52 files, 10.2MB
+[32m==>[0m [1mInstalling [32mglslang[39m[0m
+[34m==>[0m [1mPouring glslang--16.6.0.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/glslang/16.6.0: 36 files, 3.2MB
+[34m==>[0m [1mPouring bison--3.8.2.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/bison/3.8.2: 100 files, 3.9MB
+[32m==>[0m [1mInstalling llvm dependency: [32mz3[39m (5.3.1)[0m
+[34m==>[0m [1mPouring z3--5.3.1.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/z3/5.3.1: 133 files, 43.1MB
+[32m==>[0m [1mInstalling [32mllvm[39m[0m
+[34m==>[0m [1mPouring llvm--23.1.4.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/llvm/23.1.4: 9,338 files, 1.9GB
+[34m==>[0m [1mPouring shaderc--2026.4.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/shaderc/2026.4: 21 files, 32.7MB
+[34m==>[0m [1mPouring vulkan-headers--1.4.363.0.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/vulkan-headers/1.4.363.0: 72 files, 42.4MB
+[34m==>[0m [1mPouring vulkan-loader--1.4.363.0.arm64_tahoe.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/vulkan-loader/1.4.363.0: 15 files, 1.4MB
+[32m==>[0m [1mCaveats[0m
+Bash completion has been installed to:
+  /opt/homebrew/etc/bash_completion.d
+[34m==>[0m [1mbison[0m
+bison is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+If you need to have bison first in your PATH, run:
+  printf '%s\n' export\ PATH\=/opt/homebrew/opt/bison/bin:\$PATH >> /Users/runner/.bash_profile
+
+For compilers to find bison you may need to set:
+  export LDFLAGS=-L/opt/homebrew/opt/bison/lib
+[34m==>[0m [1mllvm[0m
+CLANG_CONFIG_FILE_SYSTEM_DIR: /opt/homebrew/etc/clang
+CLANG_CONFIG_FILE_USER_DIR:   ~/.config/clang
+
+LLD and LLDB are now provided in separate formulae:
+  brew install lld
+  brew install lldb
+
+Z3 solver support will be removed in LLVM 24 as it is unsupported upstream,
+see https://github.com/llvm/llvm-project/pull/205370
+
+Using `clang`, `clang++`, etc., requires a CLT installation at `/Library/Developer/CommandLineTools`.
+If you don't want to install the CLT, you can write appropriate configuration files pointing to your
+SDK at ~/.config/clang.
+
+To use the bundled libunwind please use the following LDFLAGS:
+  LDFLAGS="-L/opt/homebrew/opt/llvm/lib/unwind -lunwind"
+
+To use the bundled libc++ please use the following LDFLAGS:
+  LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -L/opt/homebrew/opt/llvm/lib/unwind -lunwind"
+Features newer than system libc++ will require the following define to enable
+(support for this may be removed in a future major LLVM release):
+  CPPFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY"
+
+NOTE: You probably want to use the libunwind and libc++ provided by macOS unless you know what you're doing.
+
+llvm is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+If you need to have llvm first in your PATH, run:
+  printf '%s\n' export\ PATH\=/opt/homebrew/opt/llvm/bin:\$PATH >> /Users/runner/.bash_profile
+
+For compilers to find llvm you may need to set:
+  export LDFLAGS=-L/opt/homebrew/opt/llvm/lib
+  export CPPFLAGS=-I/opt/homebrew/opt/llvm/include
+
+For cmake to find llvm you may need to set:
+  export CMAKE_PREFIX_PATH=/opt/homebrew/opt/llvm
++ export PATH=/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.4.0/bin:/opt/homebrew/opt/ruby@3.4/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
++ PATH=/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.4.0/bin:/opt/homebrew/opt/ruby@3.4/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
++ rustup toolchain install 1.98.0 --profile minimal
+info: syncing channel updates for 1.98.0-aarch64-apple-darwin
+info: latest update on 2026-08-20 for version 1.98.0 (88d9e12ae 2026-08-18)
+info: downloading 3 components
+
+  1.98.0-aarch64-apple-darwin installed - rustc 1.98.0 (88d9e12ae 2026-08-18)
+
+info: self-update is disabled for this build of rustup
+info: any updates to rustup will need to be fetched with your system package manager
++ rustup default 1.98.0
+info: using existing install for 1.98.0-aarch64-apple-darwin
+info: default toolchain set to 1.98.0-aarch64-apple-darwin
+
+  1.98.0-aarch64-apple-darwin unchanged - rustc 1.98.0 (88d9e12ae 2026-08-18)
+
++ rustup target add aarch64-apple-ios --toolchain 1.98.0
+info: downloading component rust-std
++ rustup +1.98.0 target list --installed
+aarch64-apple-darwin
+aarch64-apple-ios
++ export PATH=/opt/homebrew/opt/rustup/bin:/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.4.0/bin:/opt/homebrew/opt/ruby@3.4/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
++ PATH=/opt/homebrew/opt/rustup/bin:/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64/bin:/Users/runner/hostedtoolcache/Python/3.13.16/arm64:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.4.0/bin:/opt/homebrew/opt/ruby@3.4/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
++ command -v cargo
+/opt/homebrew/opt/rustup/bin/cargo
++ cargo --version
+cargo 1.98.0 (797e8a9bc 2026-08-05)
++ bison --version
++ head -1
+bison (GNU Bison) 3.8.2
++ llvm-as --version
++ head -1
+Homebrew LLVM version 23.1.4
++ glslc --version
++ head -1
+shaderc v2026.4 unknown hash, 2026-09-11
++ spirv-val --version
++ head -1
+SPIRV-Tools v2026.4 unknown hash, 2026-09-10T13:28:18+00:00
++ glslangValidator --version
++ head -1
+Glslang Version: 11:16.6.0
++ echo '== mesa source =='
+== mesa source ==
++ test -d .cache/mesa-work
++ git -C .cache/mesa-work rev-parse HEAD
+85fda3b36405bcaea8bffc64aa4f2651dc90770d
++ git -C .cache/mesa-work status --short
++ head -30
+ M meson.build
+ M meson.options
+ M src/freedreno/ir3/ir3_disk_cache.c
+ M src/freedreno/ir3/ir3_shader.c
+ M src/freedreno/ir3/meson.build
+ M src/freedreno/vulkan/meson.build
+ M src/freedreno/vulkan/tu_clear_blit.cc
+ M src/freedreno/vulkan/tu_device.cc
+ M src/freedreno/vulkan/tu_device.h
+ M src/freedreno/vulkan/tu_image.cc
+ M src/freedreno/vulkan/tu_knl.cc
+ M src/freedreno/vulkan/tu_knl.h
+ M src/freedreno/vulkan/tu_pipeline.cc
+ M src/freedreno/vulkan/tu_shader.cc
+ M src/util/cache_ops_aarch64.c
+ M src/vulkan/wsi/wsi_common_metal_layer.m
+?? src/freedreno/vulkan/tu_builtin_cache.cc
+?? src/freedreno/vulkan/tu_builtin_cache.h
+?? src/freedreno/vulkan/tu_knl_darwin.cc
++ echo '== mesa venv =='
+== mesa venv ==
++ python3 -m venv .cache/mesa-venv
++ .cache/mesa-venv/bin/pip install -q --upgrade pip
++ .cache/mesa-venv/bin/pip install -q meson ninja packaging mako pyyaml
++ .cache/mesa-venv/bin/meson --version
+1.12.1
++ echo '== turnip host =='
+== turnip host ==
++ python3 scripts/build-turnip-darwin.py --target host
+PASS: Turnip with the darwin kernel backend builds for host (22829672 bytes); no GPU or IOKit service was exercised
++ echo '== turnip ios =='
+== turnip ios ==
++ python3 scripts/build-turnip-darwin.py --target ios
+PASS: Turnip with the darwin kernel backend builds for ios (17878744 bytes); no GPU or IOKit service was exercised
++ echo '== host smoke =='
+== host smoke ==
++ python3 scripts/ci-host-smoke.py
+PASS: smoke shaders compiled and validated -> /Users/runner/work/UniXNU/UniXNU/build/turnip-smoke/NativeTurnipShaders.h
+PASS: host transport and plugin smoke built at /Users/runner/work/UniXNU/UniXNU/build/turnip-darwin-host
++ echo '== metal2vulkan source =='
+== metal2vulkan source ==
++ test -d .cache/gpu-reference/metal2vulkan
++ git -C .cache/gpu-reference/metal2vulkan rev-parse HEAD
+720ef1ce9ae2a2068999a8675717418b9416283e
++ echo '== plugin =='
+== plugin ==
++ python3 scripts/build-adreno-metal-plugin.py
+PASS: smoke shaders compiled and validated -> /Users/runner/work/UniXNU/UniXNU/build/turnip-smoke/NativeTurnipShaders.h
+PASS: Turnip first submission: 5 buffers, IB 0x20027000 (233 dwords), 21 prefixes -> build/turnip-smoke/TurnipReplay.h
+PASS: native Metal bridge static library for ios (308317856 bytes); translator 720ef1ce9ae2
+In file included from /Users/runner/work/UniXNU/UniXNU/drivers/AdrenoMetal/NativeAdrenoMetalPlugin.mm:18:
+In file included from /Users/runner/work/UniXNU/UniXNU/drivers/AdrenoMetal/NativeMetalBridgePhase.h:14:
+/Users/runner/work/UniXNU/UniXNU/drivers/AdrenoMetal/GpuScanoutClient.h:13:10: fatal error: '../NativeMobileDisplay/NativeGOPWire.h' file not found
+   13 | #include "../NativeMobileDisplay/NativeGOPWire.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+Traceback (most recent call last):
+  File "/Users/runner/work/UniXNU/UniXNU/scripts/build-adreno-metal-plugin.py", line 40, in <module>
+    subprocess.run([*(['xcrun', 'clang++'] + base[2:]), '-std=c++17', '-fobjc-arc', '-Wno-deprecated-declarations', '-bundle',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    '-I', ROOT / 'drivers/Adreno740', '-I', ROOT / 'kits/AdrenoPM4', '-I', VULKAN_INCLUDE, '-I', ROOT / 'build/turnip-smoke',
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                    '-Wl,-dead_strip', *prime_section, '-lobjc', '-framework', 'Foundation', '-framework', 'Metal', '-framework', 'IOSurface', '-o', exe],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   check=True)
+                   ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['xcrun', 'clang++', '-target', 'arm64-apple-ios17.0', '-isysroot', '/Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.5.sdk', '-O2', '-g', '-Wall', '-Wextra', '-Werror', '-fstack-protector-strong', '-std=c++17', '-fobjc-arc', '-Wno-deprecated-declarations', '-bundle', '-I', PosixPath('/Users/runner/work/UniXNU/UniXNU/drivers/Adreno740'), '-I', PosixPath('/Users/runner/work/UniXNU/UniXNU/kits/AdrenoPM4'), '-I', PosixPath('/Users/runner/work/UniXNU/UniXNU/.cache/mesa-work/include'), '-I', PosixPath('/Users/runner/work/UniXNU/UniXNU/build/turnip-smoke'), '-x', 'objective-c++', PosixPath('/Users/runner/work/UniXNU/UniXNU/drivers/AdrenoMetal/NativeAdrenoMetalPlugin.mm'), PosixPath('/Users/runner/work/UniXNU/UniXNU/drivers/AdrenoMetal/NativeBridgeMetalFrontend.mm'), '-x', 'none', PosixPath('/Users/runner/work/UniXNU/UniXNU/build/adreno-metal-plugin/AdrenoPM4.o'), PosixPath('/Users/runner/work/UniXNU/UniXNU/build/adreno-metal-bridge/ios/libadreno_metal_bridge.a'), '-Wl,-dead_strip', '-lobjc', '-framework', 'Foundation', '-framework', 'Metal', '-framework', 'IOSurface', '-o', PosixPath('/Users/runner/work/UniXNU/UniXNU/build/adreno-metal-plugin/NativeAdrenoMetal.bundle/NativeAdrenoMetal')]' returned non-zero exit status 1.
+++ rc=1
+++ echo '::error::ci-metal-addon failed (rc=1) at line 49'
+::error::ci-metal-addon failed (rc=1) at line 49
+++ exit 1
