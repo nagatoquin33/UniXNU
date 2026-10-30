@@ -15,9 +15,26 @@ jobs:
       - name: Check out UniXNU
         uses: actions/checkout@v4
 
+      - name: Check out the offline inputs
+        uses: actions/checkout@v4
+        with:
+          ref: ci-inputs
+          path: ci-inputs
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+
+      - name: Unpack the offline inputs
+        run: |
+          set -euxo pipefail
+          mkdir -p .cache/gpu-reference
+          cat ci-inputs/mesa-work.tar.gz.part-* > mesa-work.tar.gz
+          tar -xzf mesa-work.tar.gz -C .cache
+          cat ci-inputs/metal2vulkan.tar.gz.part-* > metal2vulkan.tar.gz
+          tar -xzf metal2vulkan.tar.gz -C .cache/gpu-reference
+          git -C .cache/mesa-work rev-parse HEAD
+          git -C .cache/gpu-reference/metal2vulkan rev-parse HEAD
 
       - name: Build the add-on
         run: bash scripts/ci-metal-addon.sh
