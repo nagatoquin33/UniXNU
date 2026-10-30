@@ -1,0 +1,44 @@
+name: sheng data grow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/sheng-data-grow.yml
+
+jobs:
+  grow:
+    runs-on: macos-26
+    timeout-minutes: 40
+    steps:
+      - name: Check out UniXNU
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Check out the offline inputs
+        uses: actions/checkout@v4
+        with:
+          ref: ci-inputs
+          path: ci-inputs
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Grow the Data seed to 3 GiB
+        run: |
+          set -euo pipefail
+          git submodule update --init --depth 1 drivers/DarwinBoot
+          mkdir -p build
+          python3 scripts/seed-data-grow.py --gib 3 ci-inputs/sheng-data-32m.dbr build/sheng-data-3g.dbr
+          python3 -c "import sys; from pathlib import Path; sys.path.insert(0,'drivers/DarwinBoot/Test'); import packed_ramdisk; p=Path('build/sheng-data-3g.dbr'); i=packed_ramdisk.inspect(p); print('Seed report:', i); print('Packed bytes:', p.stat().st_size); assert i['bytes']==3*1024**3, i; assert p.stat().st_size<=256*1024**2, p.stat().st_size"
+          ls -lh build/sheng-data-3g.dbr
+          df -h .
+
+      - name: Upload the seed
+        uses: actions/upload-artifact@v4
+        with:
+          name: sheng-data-3g
+          path: build/sheng-data-3g.dbr
+          if-no-files-found: error
