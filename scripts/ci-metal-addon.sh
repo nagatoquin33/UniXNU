@@ -16,7 +16,7 @@ git -C .cache/mesa-work status --short | head -30
 echo "== mesa venv =="
 python3 -m venv .cache/mesa-venv
 .cache/mesa-venv/bin/pip install -q --upgrade pip
-.cache/mesa-venv/bin/pip install -q meson ninja
+.cache/mesa-venv/bin/pip install -q meson ninja packaging
 .cache/mesa-venv/bin/meson --version
 
 echo "== turnip ios =="
