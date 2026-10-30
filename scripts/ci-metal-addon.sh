@@ -47,5 +47,9 @@ test -d .cache/gpu-reference/metal2vulkan
 git -C .cache/gpu-reference/metal2vulkan rev-parse HEAD
 
 echo "== plugin =="
-python3 scripts/build-adreno-metal-plugin.py
+if ! python3 scripts/build-adreno-metal-plugin.py; then
+  echo "== deferred pressure log =="
+  tail -80 build/turnip-darwin-host/deferred-pressure.log 2>/dev/null || true
+  exit 1
+fi
 ls -la build/adreno-metal-plugin
