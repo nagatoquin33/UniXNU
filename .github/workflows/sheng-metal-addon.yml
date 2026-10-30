@@ -38,6 +38,7 @@ jobs:
           tar -xzf mesa-work.tar.gz -C .cache
           cat ci-inputs/metal2vulkan.tar.gz.part-* > metal2vulkan.tar.gz
           tar -xzf metal2vulkan.tar.gz -C .cache/gpu-reference
+          git -C .cache/gpu-reference/metal2vulkan checkout -- .
           git -C .cache/mesa-work rev-parse HEAD
           git -C .cache/gpu-reference/metal2vulkan rev-parse HEAD
 
