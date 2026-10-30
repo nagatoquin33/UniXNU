@@ -46,5 +46,9 @@ test -d .cache/gpu-reference/metal2vulkan
 git -C .cache/gpu-reference/metal2vulkan rev-parse HEAD
 
 echo "== plugin =="
+# GpuScanoutClient.h still includes ../NativeMobileDisplay/NativeGOPWire.h, the directory name the
+# component had before it became GopFramebuffer. Provide that name rather than editing the source.
+ln -sfn GopFramebuffer drivers/NativeMobileDisplay
+test -f drivers/NativeMobileDisplay/NativeGOPWire.h
 python3 scripts/build-adreno-metal-plugin.py
 ls -la build/adreno-metal-plugin
