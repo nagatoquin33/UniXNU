@@ -26,19 +26,19 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Grow the Data seed to 3 GiB
+      - name: Grow the Data seed to 960 GiB
         run: |
           set -euo pipefail
           git submodule update --init --depth 1 drivers/DarwinBoot
           mkdir -p build
-          python3 scripts/seed-data-grow.py --gib 3 ci-inputs/sheng-data-32m.dbr build/sheng-data-3g.dbr
-          python3 -c "import sys; from pathlib import Path; sys.path.insert(0,'drivers/DarwinBoot/Test'); import packed_ramdisk; p=Path('build/sheng-data-3g.dbr'); i=packed_ramdisk.inspect(p); print('Seed report:', i); print('Packed bytes:', p.stat().st_size); assert i['bytes']==3*1024**3, i; assert p.stat().st_size<=256*1024**2, p.stat().st_size"
-          ls -lh build/sheng-data-3g.dbr
+          python3 scripts/seed-data-grow.py --gib 960 ci-inputs/sheng-data-32m.dbr build/sheng-data-960g.dbr
+          python3 -c "import sys; from pathlib import Path; sys.path.insert(0,'drivers/DarwinBoot/Test'); import packed_ramdisk; p=Path('build/sheng-data-960g.dbr'); i, header=packed_ramdisk.inspect(p); print('Seed report:', i); print('Packed bytes:', p.stat().st_size); assert i['bytes']==960*1024**3, i; assert header[32:36]==b'NXSB', 'Not an APFS container'; assert p.stat().st_size<=256*1024**2, p.stat().st_size"
+          ls -lh build/sheng-data-960g.dbr
           df -h .
 
       - name: Upload the seed
         uses: actions/upload-artifact@v4
         with:
-          name: sheng-data-3g
-          path: build/sheng-data-3g.dbr
+          name: sheng-data-960g
+          path: build/sheng-data-960g.dbr
           if-no-files-found: error
