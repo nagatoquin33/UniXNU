@@ -2,6 +2,9 @@
 # Build the sheng Metal add-on on a macOS runner.
 set -euxo pipefail
 
+exec > >(tee ci-metal-addon.log) 2>&1
+trap 'rc=$?; echo "::error::ci-metal-addon failed (rc=$rc) at line $LINENO"; exit $rc' ERR
+
 echo "== host tools =="
 brew install meson ninja glslang bison rust llvm
 

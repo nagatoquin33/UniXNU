@@ -20,7 +20,7 @@ jobs:
           python-version: "3.13"
 
       - name: Build the add-on
-        run: bash scripts/ci-metal-addon.sh 2>&1 | tee ci-metal-addon.log
+        run: bash scripts/ci-metal-addon.sh
 
       - name: Upload the build log
         if: always()
