@@ -6,7 +6,16 @@ exec > >(tee ci-metal-addon.log) 2>&1
 trap 'rc=$?; echo "::error::ci-metal-addon failed (rc=$rc) at line $LINENO"; exit $rc' ERR
 
 echo "== host tools =="
-brew install meson ninja glslang bison rust llvm
+brew install meson ninja glslang bison rustup llvm shaderc spirv-tools pkg-config
+export PATH="/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:$HOME/.cargo/bin:$PATH"
+rustup toolchain install 1.98.0
+rustup default 1.98.0
+cargo --version
+bison --version | head -1
+llvm-as --version | head -1
+glslc --version | head -1
+spirv-val --version | head -1
+glslangValidator --version | head -1
 
 echo "== mesa source =="
 test -d .cache/mesa-work
@@ -18,6 +27,9 @@ python3 -m venv .cache/mesa-venv
 .cache/mesa-venv/bin/pip install -q --upgrade pip
 .cache/mesa-venv/bin/pip install -q meson ninja packaging mako pyyaml
 .cache/mesa-venv/bin/meson --version
+
+echo "== turnip host =="
+python3 scripts/build-turnip-darwin.py --target host
 
 echo "== turnip ios =="
 python3 scripts/build-turnip-darwin.py --target ios
