@@ -70,6 +70,20 @@ jobs:
           git commit -m "CI failure log for $GITHUB_SHA"
           git push -f origin ci-failure-log
 
+      - name: Stage the plugin into the Data seed
+        if: success()
+        run: |
+          set -euxo pipefail
+          python3 scripts/add-gpu-plugin-data.py --publish --clients "*" ci-inputs/sheng-data-32m.dbr build/sheng-data-with-gpu.dbr
+          ls -la build/sheng-data-with-gpu.dbr
+
+      - name: Upload the staged seed
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sheng-data-with-gpu
+          path: build/sheng-data-with-gpu.dbr
+
       - name: Upload the add-on
         if: success()
         uses: actions/upload-artifact@v4
