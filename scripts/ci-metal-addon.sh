@@ -10,8 +10,7 @@ brew install meson ninja glslang bison rustup llvm shaderc spirv-tools pkg-confi
 export PATH="/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:$PATH"
 rustup toolchain install 1.98.0 --profile minimal
 rustup default 1.98.0
-export PATH="$HOME/.cargo/bin:$PATH"
-ls -la "$HOME/.cargo/bin" | head -10
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 command -v cargo
 cargo --version
 bison --version | head -1
