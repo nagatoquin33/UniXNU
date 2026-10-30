@@ -6,7 +6,7 @@ exec > >(tee ci-metal-addon.log) 2>&1
 trap 'rc=$?; echo "::error::ci-metal-addon failed (rc=$rc) at line $LINENO"; exit $rc' ERR
 
 echo "== host tools =="
-brew install meson ninja glslang bison rustup llvm shaderc spirv-tools pkg-config
+brew install meson ninja glslang bison rustup llvm shaderc spirv-tools pkg-config vulkan-headers vulkan-loader
 export PATH="/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:$PATH"
 rustup toolchain install 1.98.0 --profile minimal
 rustup default 1.98.0
