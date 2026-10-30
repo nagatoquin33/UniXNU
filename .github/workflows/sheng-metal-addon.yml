@@ -11,9 +11,13 @@ jobs:
   addon:
     runs-on: macos-26
     timeout-minutes: 180
+    permissions:
+      contents: write
     steps:
       - name: Check out UniXNU
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Check out the offline inputs
         uses: actions/checkout@v4
@@ -51,6 +55,18 @@ jobs:
         if: failure()
         run: |
           tail -40 ci-metal-addon.log | while IFS= read -r line; do echo "::error::$line"; done
+
+      - name: Publish the failure log
+        if: failure()
+        run: |
+          set -x
+          cp ci-metal-addon.log failure.log
+          git config user.name "ci"
+          git config user.email "ci@invalid"
+          git checkout -B ci-failure-log
+          git add -f failure.log
+          git commit -m "CI failure log for $GITHUB_SHA"
+          git push -f origin ci-failure-log
 
       - name: Upload the add-on
         if: success()
