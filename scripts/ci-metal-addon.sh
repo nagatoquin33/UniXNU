@@ -28,6 +28,12 @@ python3 -m venv .cache/mesa-venv
 .cache/mesa-venv/bin/pip install -q meson ninja packaging mako pyyaml
 .cache/mesa-venv/bin/meson --version
 
+echo "== host shim =="
+if ! grep -q "proc_selfpid" drivers/Adreno740/tests/hostsim/host_iokit_shim.cpp; then
+  printf '\nextern "C" int proc_selfpid(void) { return 1; }\n' >> drivers/Adreno740/tests/hostsim/host_iokit_shim.cpp
+fi
+tail -3 drivers/Adreno740/tests/hostsim/host_iokit_shim.cpp
+
 echo "== turnip host =="
 python3 scripts/build-turnip-darwin.py --target host
 
