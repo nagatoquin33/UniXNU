@@ -12,7 +12,7 @@ echo "== mesa source =="
 mkdir -p .cache
 rm -rf .cache/mesa-work
 git init -q .cache/mesa-work
-git -C .cache/mesa-work remote add origin https://chromium.googlesource.com/external/gitlab.freedesktop.org/mesa/mesa
+git -C .cache/mesa-work remote add origin https://github.com/mesa3d/mesa
 git -C .cache/mesa-work fetch --depth 1 origin 85fda3b36405bcaea8bffc64aa4f2651dc90770d
 git -C .cache/mesa-work checkout -q FETCH_HEAD
 git -C .cache/mesa-work sparse-checkout init --cone

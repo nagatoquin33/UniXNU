@@ -30,6 +30,11 @@ jobs:
           path: ci-metal-addon.log
           if-no-files-found: warn
 
+      - name: Report the failure
+        if: failure()
+        run: |
+          tail -40 ci-metal-addon.log | while IFS= read -r line; do echo "::error::$line"; done
+
       - name: Upload the add-on
         if: success()
         uses: actions/upload-artifact@v4
