@@ -7,9 +7,12 @@ trap 'rc=$?; echo "::error::ci-metal-addon failed (rc=$rc) at line $LINENO"; exi
 
 echo "== host tools =="
 brew install meson ninja glslang bison rustup llvm shaderc spirv-tools pkg-config
-export PATH="/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:$HOME/.cargo/bin:$PATH"
-rustup toolchain install 1.98.0
+export PATH="/opt/homebrew/opt/bison/bin:/opt/homebrew/opt/llvm/bin:$PATH"
+rustup toolchain install 1.98.0 --profile minimal
 rustup default 1.98.0
+export PATH="$HOME/.cargo/bin:$PATH"
+ls -la "$HOME/.cargo/bin" | head -10
+command -v cargo
 cargo --version
 bison --version | head -1
 llvm-as --version | head -1
