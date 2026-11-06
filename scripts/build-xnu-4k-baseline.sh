@@ -163,7 +163,9 @@ if [ "$ARM_DT_PLATFORM" != 0 ] && [ "$ARM_DT_PLATFORM" != 1 ]; then
   echo 'XNU_ARM_DT_PLATFORM must be 0 or 1' >&2
   exit 1
 fi
-if [ "${XNU_ARMCPU:-0}" = 1 ] && { [ "${XNU_SOURCE_CORECRYPTO14:-0}" != 1 ] || \
+# A board that links its crypto through the prelinked aggregate declares that instead of
+# building corecrypto from source (XNU_CRYPTO_BOOTSTRAP=prelinked).
+if [ "${XNU_ARMCPU:-0}" = 1 ] && { { [ "${XNU_SOURCE_CORECRYPTO14:-0}" != 1 ] && [ "${XNU_ARMCPU_PRELINKED_CRYPTO:-0}" != 1 ]; } || \
      { [ "${XNU_ARMVIRT_PLATFORM:-0}" != 1 ] && [ "$ARM_DT_PLATFORM" != 1 ]; }; }; then
   echo 'ArmCpu bring-up requires the real source provider and a real platform driver' >&2
   exit 1
