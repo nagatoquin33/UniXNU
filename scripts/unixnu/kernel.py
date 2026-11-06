@@ -189,7 +189,10 @@ def build(ctx, modules):
         generated.mkdir(parents=True, exist_ok=True)
         env['UNIXNU_GENERATED_DIR'] = str(generated)
     env['JOBS'] = str(ctx.jobs)
-    record = ctx.tree / 'build/xnu/ios-obj/DEVELOPMENT_ARM64_BCM2837/osfmk/DEVELOPMENT/startup.o.json'
+    if ctx.board.get('kernel', {}).get('machine_config'):
+        env['XNU_MACHINE_CONFIG'] = str(ctx.board['kernel']['machine_config'])
+    machine = ctx.board.get('kernel', {}).get('machine_config') or 'BCM2837'
+    record = ctx.tree / f'build/xnu/ios-obj/DEVELOPMENT_ARM64_{machine}/osfmk/DEVELOPMENT/startup.o.json'
     if not record.is_file():
         # The archive builders and the boot progress layer read compile records of the XNU build, which only an earlier
         # pass leaves behind. A first build from scratch therefore runs one pass without them; XNU_BOOTSTRAP makes it
