@@ -75,6 +75,7 @@ def parser():
     k = sub.add_parser('release', parents=[c], help='dependencies, patches, build steps and boot image of the device in one run, with a manifest')
     k.add_argument('--no-deps', action='store_true', help='skip fetching sources and the IPSW members')
     k.add_argument('--check', action='store_true', help='fetch, resolve and list the patch series, then stop before any build step')
+    k.add_argument('--fd', metavar='FILE', help='prebuilt firmware volume; skip the firmware build and use it for the boot image')
     return top
 
 
@@ -169,7 +170,12 @@ def cmd_build(ctx):
         ctx.uefi = ctx.option('uefi', 'UNIXNU_UEFI')
         payload.build(ctx)
     if 'firmware' in steps:
-        firmware.build(ctx, modules, need_uefi(ctx), package.edk2_dir(ctx, modules), ctx.args.target)
+        if getattr(ctx.args, 'fd', None):
+            # A prebuilt volume is supplied: only the board preflight inputs (device
+            # tree, payload metadata) are produced here, the EDK II build is skipped.
+            firmware.preflight(ctx, need_uefi(ctx))
+        else:
+            firmware.build(ctx, modules, need_uefi(ctx), package.edk2_dir(ctx, modules), ctx.args.target)
 
 
 def cmd_bootimg(ctx):
@@ -297,7 +303,9 @@ def cmd_release(ctx):
     args.steps = list(STEPS)
     cmd_build(ctx)
     log('step pack')
-    args.fd = args.ramdisk = args.output = None
+    args.ramdisk = args.output = None
+    if not getattr(args, 'fd', None):
+        args.fd = None
     # The boot image's device tree is built by a firmware preflight script; [bootimg] dtb names it relative to the build tree.
     dtb = ctx.board.get('bootimg', {}).get('dtb')
     args.dtb = str(ctx.tree / dtb) if dtb else None

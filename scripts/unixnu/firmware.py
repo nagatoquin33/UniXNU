@@ -20,6 +20,17 @@ def fd_path(ctx, uefi, target='DEBUG'):
     return uefi / fw['fd'].format(target=target)
 
 
+def preflight(ctx, uefi):
+    """Run the board's firmware preflight scripts without building the volume."""
+    fw, _config = uefi_config(ctx, uefi)
+    for entry in [] if ctx.args.skip_preflight else fw.get('preflight', []):
+        parts = shlex.split(entry)
+        script = Path(parts[0]) if Path(parts[0]).is_absolute() else ctx.tree / parts[0]
+        run(['python3', script, *parts[1:]], cwd=ctx.tree,
+            env=dict(os.environ, UNIXNU_UEFI=str(uefi), UNIXNU_DEVICE=str(ctx.device)),
+            log_file=ctx.logs / 'firmware-preflight.log')
+
+
 def build(ctx, modules, uefi, edk2, target='DEBUG'):
     log(f'firmware: {uefi.name}')
     fw, config = uefi_config(ctx, uefi)
