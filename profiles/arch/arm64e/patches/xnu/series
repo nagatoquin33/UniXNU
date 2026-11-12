@@ -18,6 +18,8 @@
 ../../../../../patches/xnu-12377/kernel-sdk-root.patch
 ../../../../../patches/xnu-12377/source-machine-layer.patch
 ../../../../../patches/xnu-12377/native-pac-keys.patch
+../../../../../patches/xnu-12377/native-pac-arm64-user-jop.patch
+../../../../../patches/xnu-12377/native-at-par-sync.patch
 ../../../../../patches/xnu-12377/public-entitlements-v2-header.patch
 ../../../../../patches/xnu-12377/no-apple-cpu-counters.patch
 ../../../../../patches/xnu-12377/apple-only-core-type.patch
@@ -36,6 +38,7 @@
 ../../../../../patches/xnu-12377/native-lookup-trace.patch
 ../../../../../patches/xnu-12377/native-union-getattrlistbulk.patch
 ../../../../../patches/xnu-12377/native-union-lower-directory.patch
+../../../../../patches/xnu-12377/native-union-statfs-fsid.patch
 ../../../../../patches/xnu-12377/native-work-interval-trace.patch
 ../../../../../patches/xnu-12377/offline-component-load-probes.patch
 ../../../../../patches/xnu-12377/offline-legacy-start.patch
@@ -62,3 +65,5 @@
 ../../../../../patches/xnu-12377/trustcache-runtime-layout.patch
 ../../../../../patches/xnu-12377/fileset-unmapped-call.patch
 ../../../../../patches/xnu-12377/native-4k-block-split.patch
+../../../../../patches/xnu-12377/native-modload-lock-order.patch
+../../../../../patches/xnu-12377/native-union-readdir-eof.patch

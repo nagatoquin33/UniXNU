@@ -29,7 +29,7 @@ Choose the transport before selecting the reference code.
 | [ShengAdsp.h](https://github.com/UniXNU/UniXNU-sheng/blob/516a780473a2ac59c8b438e132bb60204dda9e22/package/ShengAdsp.h#L15) | `ShengAdspClient`, channel registration and queued sends |
 | [LegacyDisplayProbe.cpp](https://github.com/UniXNU/UniXNU-sheng/blob/516a780473a2ac59c8b438e132bb60204dda9e22/package/LegacyDisplayProbe.cpp#L493) | Initialization order for DSP and its consumers |
 
-The sheng files illustrate a Qualcomm GLINK integration. For that interface:
+The linked files illustrate a Qualcomm GLINK integration. For that interface:
 
 1. Adapt firmware authentication, reserved memory and power votes to the target.
    Establish the mailbox and ready/crash notification paths before opening a channel.
@@ -87,7 +87,7 @@ interfaces, and retain the applicable source licenses when reusing code.
 5. **Connect the OS service.** Identify the target OS audio provider, required
    methods, request layouts, mapped-memory types and completion notifications
    from the selected kernelcache and framework. Record these ABI inputs using
-   [built-in driver integration](/drivers/xnu-drivers#compile-against-the-kernel-abi).
+   [built-in driver integration](/porting/driver-development#compile-against-the-kernel-abi).
    Connect format selection, start/stop, position and buffer completion to the
    stream engine. Publish only formats and routes implemented by that endpoint.
 6. **Exercise the route.** Play a known PCM signal or record a known input. Check
@@ -125,9 +125,9 @@ A capture route adds a codec and a SoundWire link to the stream steps above.
 6. **Publish the input.** Expose an input stream only after a direct capture of a
    known sound succeeds.
 
-The sheng route, from [AudioProbe.cpp](https://github.com/UniXNU/UniXNU-sheng/blob/main/package/AudioProbe.cpp):
+The reference route, from [AudioProbe.cpp](https://github.com/UniXNU/UniXNU-sheng/blob/main/package/AudioProbe.cpp):
 
-| Stage | sheng value |
+| Stage | Reference value |
 | --- | --- |
 | Codec | WCD938x, reset gpio108, supply ldob15, SoundWire device 1 on the TX master (0x6d30000) |
 | Analog | AMIC3, micbias 3, ADC2 |
@@ -136,7 +136,7 @@ The sheng route, from [AudioProbe.cpp](https://github.com/UniXNU/UniXNU-sheng/bl
 | Format | Mono, 48 kHz |
 | iOS | The HAL plug-in's input port; iOS accepts it with the Thunderbolt transport type |
 
-Check capture with `sheng-audio=4`, which reads two seconds at boot: the
+Check capture with `audio=4`, which reads two seconds at boot: the
 `[mic]` and `[mic capture]` log rows give returned periods, bytes, the share of
 non-zero samples and the peak. Then record in an app and read `[audio-io]`.
 
@@ -203,9 +203,9 @@ On SM8550 the governors use these inputs:
 
 - CPU: each CPU's idle time from the scheduler, read every 16 ms. A domain follows its busiest CPU with a 1.25 margin and steps down after four quieter windows.
 - GPU: the GMU XO busy counter. The level that keeps the GPU about half busy is voted over HFI together with that level's bandwidth.
-- Touch: a touch report holds the P CPU domains and the GPU at their top level until 1 s after the last report (`sheng-cpufreq-boost-ms`, `sheng-gpu-dcvs-boost-ms`).
+- Touch: a touch report holds the P CPU domains and the GPU at their top level until 1 s after the last report (`cpufreq-boost-ms`, `gpu-dcvs-boost-ms`).
 - Frames: GPU submissions in 2 of the last 4 windows keep every CPU domain at 60 percent of its top level or more for 300 ms. GPU work after an idle drop starts at twice the current clock, at least 578 MHz, for 50 ms.
-- Fence waits: a waiter sleeps until the fence interrupt, at most 1 ms (`sheng-gpu-pause-us`), instead of polling.
+- Fence waits: a waiter sleeps until the fence interrupt, at most 1 ms (`gpu-pause-us`), instead of polling.
 
 **Result:** frequency requests and power transitions have observed effects and
 preserve the dependent devices' operation.

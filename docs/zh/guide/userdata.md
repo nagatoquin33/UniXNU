@@ -2,7 +2,7 @@
 
 userdata 镜像为 XNU 提供根文件系统。它保存目标 IPSW 中未修改的 `OS` 和 `Cryptex1,SystemOS` 磁盘镜像，并在前面加一个 manifest。
 
-准备选定的 IPSW 及设备 GPT 数据。Linux 上安装提供 `lzfse` 的 [Linux 工具链](/zh/guide/requirements#linux)。扩大 Data 种子（第 4 步）需要 macOS 的 `hdiutil` 和 `diskutil`。AEA 加密的镜像（如 iPadOS 26）需要 macOS 的 `aea` 和 `ipsw` 工具。先在[构建流程](/zh/building)中选定设备并保存本地输入。
+准备选定的 IPSW 及设备 GPT 数据。Linux 上安装提供 `lzfse` 的 [Linux 工具链](/zh/guide/requirements#linux)。扩大 Data 种子（第 4 步）需要 macOS 的 `hdiutil` 和 `diskutil`。AEA 加密的镜像（如 iOS 与 iPadOS 27）需要 macOS 的 `aea` 和 `ipsw` 工具。先在[构建流程](/zh/building)中选定设备并保存本地输入。
 
 ## 1. 核对分区 {#分区}
 
@@ -27,7 +27,7 @@ windows = [
 ]
 ```
 
-IPSW 没有某个 `optional = true` 的窗口时跳过它。
+IPSW 没有某个 `optional = true` 的窗口时跳过它。macOS profile 还列出第三个窗口 `App`（`Cryptex1,AppOS`）。
 
 镜像大小为各窗口按 1 MiB 对齐后的总和，加上 1 MiB 头部区域。步骤拒绝超过分区容量的镜像。
 
@@ -65,7 +65,7 @@ ADT 生成器写入 `/chosen/root-matching`，包含 `IOProviderClass = IOMedia`
 ./unixnu build payload --data-ramdisk data.img
 ```
 
-sheng 的持久存储布局可使用 macOS 工具调整 seed 大小：
+在 macOS 上按目标持久存储布局调整 seed 大小：
 
 ```sh
 python3 scripts/seed-data-grow.py --gib 8 /path/to/data.dbr /path/to/data-grow.dbr

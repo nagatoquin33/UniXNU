@@ -2,14 +2,16 @@
 
 **Applies to supported devices only.** Use this method only on a device that
 meets every [requirement](#requirements) and appears in
-[supported devices](#supported-devices). Other devices use the arm64 profile
-`ipados-17.7.11-21H461` and the regular [porting steps](/porting/steps).
+[supported devices](#supported-devices). Other devices use an arm64 profile
+(iOS 16 or iPadOS 17, for example `ipados-17.7.11-21H461`) and the regular
+[porting steps](/porting/steps). The two arm64 targets share the arm64 patch
+series in `profiles/arch/arm64`.
 
 arm64e needs native PAC hardware: a CPU that implements pointer
 authentication and a hypervisor that leaves it usable, as the
-[requirements](#requirements) check. A device without it stays on arm64, and
-iPadOS 18 is the last version that supports arm64. iPadOS 26 and later are
-arm64e only. An arm64e profile builds XNU with pointer authentication (PAC)
+[requirements](#requirements) check. A device without it stays on arm64:
+iOS and iPadOS 18 are the last releases that support arm64, and iOS and
+iPadOS 27 are arm64e only. An arm64e profile builds XNU with pointer authentication (PAC)
 and links the original arm64e kexts of the target kernelcache.
 
 For a new port, choose a device whose CPUs have PAC and prefer the iOS or
@@ -37,7 +39,7 @@ Record the result of each check in the device `porting.toml`.
 | Device | SoC | OS profile | State |
 | --- | --- | --- | --- |
 | sheng | SM8550 | `ipados-27.0.1-24A446` | In development |
-| sheng | SM8550 | `ipados-26.5.2-23F84` | Kept as the earlier arm64e profile |
+| sheng | SM8550 | `macos-27.3-26C5035r` | In development |
 
 ## Profile layout
 
@@ -45,7 +47,7 @@ Record the result of each check in the device `porting.toml`.
 | --- | --- |
 | `profiles/arch/arm64e` | arm64e build configuration, PAC key management and XNU patch series |
 | `profiles/os/ipados-27.0.1-24A446` | XNU `12377.121.6` with the Darwin 26 calls, iPadOS 27.0.1 IPSW pins, prelink roots and OS patches |
-| `profiles/os/ipados-26.5.2-23F84` | The earlier arm64e profile, same XNU revision and its own IPSW pins |
+| `profiles/os/macos-27.3-26C5035r` | The same XNU built for macOS user space, macOS 27.3 IPSW pins, prelink roots and OS patches. See [macOS profile](/porting/macos) |
 
 The OS profile selects its architecture with `[os] arch = "arm64e"`. Profiles
 without the key use `profiles/arch/arm64`. Both architectures use the same
@@ -65,33 +67,34 @@ programming for ARMv8.3 key registers.
 
 On ARMv8.3, EL0 and EL1 use the same key registers. The current profile loads
 one random key set per boot on every CPU and enables `SCTLR_EL1` EnIA, EnIB,
-EnDA and EnDB. The kernel and all processes share this key set, so PAC does not
-isolate processes from each other.
+EnDA and EnDB. The kernel and all arm64e processes share this key set, so PAC
+does not isolate processes from each other.
+
+An arm64 process runs at EL0 with the four keys off. Its code signs nothing,
+and the arm64e system libraries it loads authenticate its return addresses
+with IB. The kernel clears the enable bits on the return to EL0 and sets them
+again at the EL0 vectors, so EL1 keeps every key. `ml_default_jop_pid` is
+nonzero, so the shared region and dyld pagers sign pointers only for arm64e
+processes.
 
 ## CPU features
 
 XNU publishes only the features the CPU implements, through `hw.optional`
-sysctls and the commpage capability words. SM8550 has no SME. The iPadOS
-26.5.2 dyld cache contains SME code in functions with SME-specific names.
+sysctls and the commpage capability words. SM8550 has no SME.
 
 ## Procedure
 
 1. Run the [requirement](#requirements) checks on every enabled CPU and record them.
 2. Set `board.os_profile = "ipados-27.0.1-24A446"` in the device configuration, or pass
-   `--os 27` to `./unixnu` for one run.
+   `--os 27` to `./unixnu` for one run. For macOS, pass `--os macos-27` and
+   follow [macOS profile](/porting/macos).
 3. Run `./unixnu fetch` and `./unixnu status --json`. Confirm the arm64e profile, XNU revision and patch order.
 4. Build with [Building](/building): kernel, package, firmware, payload, userdata, boot image.
 5. Follow the [bring-up order](/porting/bring-up) and record each checkpoint.
 
-## Facts and open questions
+## Facts
 
-Facts:
-
-- The iPadOS 26.5.2 kernelcache for iPad17,1 to iPad17,4 reports `xnu-12377.122.8`. The closest public source is `xnu-12377.121.6`.
 - The public `xnu-12377.121.6` tree keeps the non-SPTM pmap in `osfmk/arm/pmap`.
 - The arm64e kernel builds with the `BCM2837` machine config, the non-SPTM pmap and Apple CPU counters disabled.
-- The iPadOS 26.5.2 kernelcache is an `MH_FILESET` with stripped symbol tables. Its kext code branches directly into the kernel, so the iPadOS 17 prelink step does not apply.
-
-Open questions:
-
-- The SME functions in the dyld cache are probably selected at run time from the published CPU features. This is not yet confirmed.
+- The iPadOS 27 kernelcache is an `MH_FILESET` with stripped symbol tables. Its kext code branches directly into the kernel, so the arm64 prelink step does not apply.
+- The macOS 27.3 kernelcache keeps its symbol tables. Its prelink map is built from names, and the fileset stays at its linked addresses.

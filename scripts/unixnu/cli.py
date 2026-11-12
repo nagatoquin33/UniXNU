@@ -5,12 +5,12 @@ import platform
 import shutil
 import sys
 
-from . import bootimg, components, feeds, firmware, ipsw, kernel, package, patches, payload, pipeline, profiles, tree, userdata
+from . import bootimg, components, feeds, firmware, ipsw, kernel, package, patches, payload, pipeline, profiles, runtime, tree, userdata, vendor_boot
 from .config import LOCAL_KINDS, Context, parse_config
 from .util import Error, expand, git, log
 
 STEPS = ('kernel', 'package', 'firmware', 'payload')
-OPTIONAL_STEPS = ('userdata',)   # large; built only when named
+OPTIONAL_STEPS = ('userdata', 'runtime')
 
 
 def common():
@@ -34,7 +34,8 @@ def common():
     p.add_argument('--trust-cache', metavar='FILE', help='trust cache bundle for the payload')
     p.add_argument('--owner-trust-cache', metavar='FILE', help='owner-signed trust cache bundle that carries the original caches and extra modules; replaces --trust-cache and skips the board allow-list')
     p.add_argument('--skip-setup', action='store_true', help='mark Setup as done in the Data seed, so the Hello pages are skipped (needs --data-ramdisk; optional)')
-    p.add_argument('--data-ramdisk', metavar='FILE', help='Data ramdisk seed for the payload (an input; not built here)')
+    p.add_argument('--data-ramdisk', metavar='FILE', help='preserved Data ramdisk seed for this installation')
+    p.add_argument('--init-data', action='store_true', help='create and retain a new Data seed from the IPSW for a FIRST installation; requires kernel build')
     p.add_argument('--gpu-addon', metavar='FILE', help='GPU addon file (scripts/make-gpu-addon.py) the kernel writes into the Data volume at boot')
     p.add_argument('--unique-chip-id', metavar='HEX', help='platform seed for the device tree; or UNIXNU_UNIQUE_CHIP_ID')
     p.add_argument('--ipsw', metavar='PATH_OR_URL', help='the target IPSW: a local file or an https URL (default: url of board.toml [ipsw]); or UNIXNU_IPSW')
@@ -66,6 +67,13 @@ def parser():
     i.add_argument('--dtb', metavar='FILE', help='compiled device tree; or UNIXNU_DTB')
     i.add_argument('--ramdisk', metavar='FILE', help='ramdisk image, or none (default: the payload step output when present, else empty)')
     i.add_argument('-o', '--output', metavar='FILE', help='output (default: out/<device>/boot/boot.img)')
+    v = sub.add_parser('vendor_boot', parents=[c], help='replace the vendor ramdisk of a stock vendor_boot image')
+    v.add_argument('--stock', metavar='FILE', help='stock vendor_boot image to rebuild from')
+    v.add_argument('--ramdisk', metavar='FILE', help='vendor ramdisk to install, or none for an empty one')
+    v.add_argument('--ramdisk-addr', metavar='ADDR', help='ramdisk load address (default: the stock address)')
+    v.add_argument('--verify-against', action='store_true',
+                   help='repack the stock ramdisk first and require a byte-identical result')
+    v.add_argument('-o', '--output', metavar='FILE', help='output (default: vendor_boot.img next to --stock)')
     w = sub.add_parser('ipsw', parents=[c], help='show or extract the components of the target IPSW')
     w.add_argument('action', choices=('info', 'fetch'))
     w.add_argument('components', nargs='*', help='components to extract (default: the small ones the board lists)')
@@ -159,6 +167,8 @@ def cmd_build(ctx):
     if 'firmware' in steps:
         need_uefi(ctx)   # fail before fetching anything
     modules = prepare(ctx, steps + (['kernel'] if 'prelink' in steps else []))
+    if 'payload' in steps or 'runtime' in steps:
+        runtime.prepare(ctx, kernel_build='kernel' in steps)
     if 'kernel' in steps:
         kernel.build(ctx, modules)
         kernel.prelink(ctx)
@@ -192,6 +202,14 @@ def cmd_bootimg(ctx):
     if ramdisk is None:
         log('ramdisk: empty; build payload or pass --ramdisk FILE to include configured boot entries')
     bootimg.build(ctx, uefi, fd, dtb, ramdisk, expand(ctx.args.output) if ctx.args.output else None)
+
+
+def cmd_vendor_boot(ctx):
+    stock = expand(ctx.args.stock)
+    ramdisk = None if ctx.args.ramdisk in (None, 'none') else expand(ctx.args.ramdisk)
+    vendor_boot.build(stock, ramdisk, expand(ctx.args.output) if ctx.args.output else None,
+                      int(ctx.args.ramdisk_addr, 0) if ctx.args.ramdisk_addr else None,
+                      ctx.args.verify_against)
 
 
 def cmd_ipsw(ctx):
@@ -338,7 +356,8 @@ def main(argv=None):
     try:
         ctx = Context(args)
         {'defconfig': cmd_defconfig, 'fetch': cmd_fetch, 'tree': lambda c: prepare(c), 'build': cmd_build,
-         'bootimg': cmd_bootimg, 'ipsw': cmd_ipsw, 'status': cmd_status, 'clean': cmd_clean, 'release': cmd_release}[args.command](ctx)
+         'bootimg': cmd_bootimg, 'vendor_boot': cmd_vendor_boot, 'ipsw': cmd_ipsw, 'status': cmd_status,
+         'clean': cmd_clean, 'release': cmd_release}[args.command](ctx)
     except Error as error:
         sys.exit(f'unixnu: {error}')
     except KeyboardInterrupt:

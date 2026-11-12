@@ -116,17 +116,17 @@ python3 scripts/porting-record.py check --device "$DEVICE_DIR"
 schema_version = 2
 
 [board]
-name = "sheng"
+name = "myboard"
 soc = "SM8550"
 soc_source = "sm8550"
 os_profile = "ipados-17.7.11-21H461"
-kit = "sheng"
+kit = "myboard"
 
 [components]
 include = ["ArmDTPlatform", "ArmCpu", "Adreno740", "AdrenoMetal", "ShengUfs", "ShengHidInput", "ShengNovatekTouch", "GopFramebuffer"]
 
 [device_tree]
-source = "device:dts/sheng.dts"
+source = "device:dts/myboard.dts"
 include_dirs = ["soc:dts"]
 ```
 
@@ -140,6 +140,10 @@ include_dirs = ["soc:dts"]
 表按键合并，普通数组替换继承数组。组件依赖按构建顺序补全。`unixnu status --json`
 显示最终设置、源码、覆盖项和补丁顺序。
 
+`[os_overrides."<profile>"]` 保存某个 OS 配置特有的值，`[package.defconfig]`
+把每个配置映射到它的 defconfig。`--os` 为单条命令选择配置。字段见
+[配置参考](/zh/reference/configuration)，完整的覆盖示例见 [macOS 的值](/zh/porting/macos#device)。
+
 省略 `schema_version` 的文件使用格式 1 及其模块路径。格式 2 的输出位于
 `out/<device>/<os_profile>/<config>/`，其中 `<config>` 为去掉 `_defconfig` 的配置名。
 
@@ -147,7 +151,7 @@ include_dirs = ["soc:dts"]
 
 ```toml
 [kernel]
-defconfig = "sheng_defconfig"
+defconfig = "myboard_defconfig"
 config_fragments = ["arch:configs/common.config", "soc:configs/sm8550.config"]
 patch_series = ["arch:patches/xnu/series", "soc:patches/xnu/series", "os:patches/xnu/series", "device:patches/xnu/series"]
 ```
@@ -379,7 +383,7 @@ CONFIG_XNU_OWNER_CACHE_VOLUME_UUID="00000000-0000-0000-0000-000000000000"
 
 取值可以是 `y`、`n`、数字或带引号字符串。每个 `CONFIG_XNU_<NAME>` 变成内核构建的 `XNU_<NAME>`，字符串中的 `{tree}` 替换为构建树路径。
 
-`CONFIG_XNU_OWNER_CACHE_VOLUME_UUID` 指定 owner 链作为缓存载体挂载的 SystemOS cryptex 卷，即签名 SystemOS 策略所覆盖镜像中的 APFS 卷 UUID。不设置时，内核使用 sheng 镜像的卷。
+`CONFIG_XNU_OWNER_CACHE_VOLUME_UUID` 指定 owner 链作为缓存载体挂载的 SystemOS cryptex 卷，即签名 SystemOS 策略所覆盖镜像中的 APFS 卷 UUID。不设置时，内核使用内置的卷 UUID。
 
 ## feeds.toml
 
@@ -477,5 +481,4 @@ entry = "<entry id>"
 完成条件，记录字段与 `board.toml` 及组件依赖匹配。设备 CI 检查代码路径对应部分
 的经验或证据更新。字段、状态和发布流程见[记录指南](/zh/porting/records)。
 
-板级驱动子模块归属设备仓库。sheng 在设备仓库固定 ShengUfs、ShengHidInput、
-ShengNovatekTouch 和 ShengPreflight。
+板级驱动子模块归属设备仓库。在其中固定所选组件版本，记录板级输入与构建配方。

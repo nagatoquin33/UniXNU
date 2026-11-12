@@ -39,7 +39,7 @@ HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
 FdtLib|MdePkg/Library/BaseFdtLib/BaseFdtLib.inf
 ```
 
-Add `PartitionDxe` when the payload uses a partition table. The FAT driver also needs the platform's Unicode collation service. sheng's `Include/DXE.inc` contains these dependencies.
+Add `PartitionDxe` when the payload uses a partition table. The FAT driver also needs the platform's Unicode collation service. The reference firmware's `Include/DXE.inc` contains these dependencies.
 
 `UniXNURamDiskDxe` is shared by devices using Mu-Silicium's FDT handoff. Its source is in UniXNU's `package/UniXNUPkg/Driver/UniXNURamDiskDxe/`. Board memory reservations and memory expansion remain in the firmware platform.
 
@@ -257,10 +257,10 @@ A driver can live in the firmware volume or in the payload.
 | Firmware volume | Add the INF to the DSC and FDF | Firmware dispatches it, or UniXNUDxe starts the application |
 | Payload | Build a standalone `.efi` | `[[driver]]` in `unixnu.toml` or a kit |
 
-See [UEFI drivers](/drivers/uefi-drivers) for the INF, entry point and injection details.
+See [Develop a driver](/porting/driver-development#uefi-driver) for the load options.
 
 ## Next steps
 
 - [Device tree](/porting/device-tree)
 - [Bring-up order](/porting/bring-up)
-- [UEFI drivers](/drivers/uefi-drivers)
+- [Develop a driver](/porting/driver-development)

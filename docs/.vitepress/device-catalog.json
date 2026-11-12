@@ -1,1057 +1,797 @@
 [
   {
     "name": "sheng",
-    "title": "Xiaomi Pad 6S Pro (sheng)",
-    "title_zh": "小米平板 6S Pro（sheng）"
+    "title": "Xiaomi Pad 6S Pro (sheng) (official)",
+    "title_zh": "小米平板 6S Pro（sheng）（官方维护）"
   },
   {
-    "name": "a04br3",
-    "title": "Benesse TAB-A04-BR3 (a04br3)",
-    "title_zh": "Benesse TAB-A04-BR3（a04br3）"
+    "name": "models/a04br3",
+    "title": "a04br3",
+    "title_zh": "a04br3"
   },
   {
-    "name": "ace6",
-    "title": "OnePlus Ace 6 PLQ110 (OP6113L1): SM8750 Sun v1, 12 GiB, AA605 panel, S3910 touch",
-    "title_zh": "OnePlus Ace 6 PLQ110 (OP6113L1): SM8750 Sun v1, 12 GiB, AA605 panel, S3910 touch"
+    "name": "models/ace6",
+    "title": "ace6",
+    "title_zh": "ace6"
   },
   {
-    "name": "alioth",
-    "title": "Redmi K40 (alioth)",
-    "title_zh": "Redmi K40（alioth）"
+    "name": "models/alioth",
+    "title": "alioth",
+    "title_zh": "alioth"
   },
   {
-    "name": "alioth-fjcx555",
-    "title": "Xiaomi Redmi K40 (alioth, M2012K11AC) (fjcx555)",
-    "title_zh": "Xiaomi Redmi K40 (alioth, M2012K11AC) (fjcx555)"
+    "name": "models/alphaplus",
+    "title": "alphaplus",
+    "title_zh": "alphaplus"
   },
   {
-    "name": "alioth-songchiyu",
-    "title": "Xiaomi Redmi K40 (alioth, M2012K11AC) (songchiyu)",
-    "title_zh": "Xiaomi Redmi K40 (alioth, M2012K11AC) (songchiyu)"
+    "name": "models/amethyst",
+    "title": "amethyst",
+    "title_zh": "amethyst"
   },
   {
-    "name": "alioth-yang232138",
-    "title": "Xiaomi Redmi K40 (alioth, M2012K11AC) (yang232138)",
-    "title_zh": "Xiaomi Redmi K40 (alioth, M2012K11AC) (yang232138)"
+    "name": "models/andromeda",
+    "title": "andromeda",
+    "title_zh": "andromeda"
   },
   {
-    "name": "amethyst",
-    "title": "Redmi Note 14 Pro+ 5G (amethyst)",
-    "title_zh": "Redmi Note 14 Pro+ 5G（amethyst）"
+    "name": "models/asteroids",
+    "title": "asteroids",
+    "title_zh": "asteroids"
   },
   {
-    "name": "amethyst-bluedmc-amethyst",
-    "title": "Xiaomi Redmi Note 14 Pro+ 5G (BluedMC-Amethyst) (IOS4Amethyst)",
-    "title_zh": "Xiaomi Redmi Note 14 Pro+ 5G (BluedMC-Amethyst) (IOS4Amethyst)"
+    "name": "models/aston",
+    "title": "aston",
+    "title_zh": "aston"
   },
   {
-    "name": "asteroids",
-    "title": "Nothing Phone (3a) (asteroids)",
-    "title_zh": "Nothing Phone (3a)（asteroids）"
+    "name": "models/babylon",
+    "title": "babylon",
+    "title_zh": "babylon"
   },
   {
-    "name": "bbk-a2",
-    "title": "BBK/EEBBK A2, X2 and X2P tablet (ums512_1h190, Unisoc T610 / UMS512 SharkL5Pro)",
-    "title_zh": "BBK/EEBBK A2, X2 and X2P tablet (ums512_1h190, Unisoc T610 / UMS512 SharkL5Pro)"
+    "name": "models/bbk-a2",
+    "title": "bbk-a2",
+    "title_zh": "bbk-a2"
   },
   {
-    "name": "braveark",
-    "title": "Brave Ark tablet (braveark)",
-    "title_zh": "Brave Ark 平板（braveark）"
+    "name": "models/braveark",
+    "title": "braveark",
+    "title_zh": "braveark"
   },
   {
-    "name": "caihong",
-    "title": "OnePlus Pad Pro (caihong)",
-    "title_zh": "一加平板 Pro（caihong）"
+    "name": "models/caihong",
+    "title": "caihong",
+    "title_zh": "caihong"
   },
   {
-    "name": "camellia",
-    "title": "Redmi Note 10 5G (camellia)",
-    "title_zh": "Redmi Note 10 5G（camellia）"
+    "name": "models/camellia",
+    "title": "camellia",
+    "title_zh": "camellia"
   },
   {
-    "name": "cas",
-    "title": "Xiaomi 10 Ultra (cas)",
-    "title_zh": "小米 10 Ultra（cas）"
+    "name": "models/cas",
+    "title": "cas",
+    "title_zh": "cas"
   },
   {
-    "name": "cas-pxl777806",
-    "title": "Xiaomi Mi 10 Ultra (pxl777806)",
-    "title_zh": "Xiaomi Mi 10 Ultra (pxl777806)"
+    "name": "models/cepheus",
+    "title": "cepheus",
+    "title_zh": "cepheus"
   },
   {
-    "name": "cepheus",
-    "title": "Xiaomi Mi 9 (cepheus)",
-    "title_zh": "小米 9（cepheus）"
+    "name": "models/cheeseburger",
+    "title": "cheeseburger",
+    "title_zh": "cheeseburger"
   },
   {
-    "name": "cepheus-c0der88",
-    "title": "Xiaomi Mi 9 (c0der88)",
-    "title_zh": "Xiaomi Mi 9 (c0der88)"
+    "name": "models/chiron",
+    "title": "chiron",
+    "title_zh": "chiron"
   },
   {
-    "name": "cepheus-yangqi0408",
-    "title": "Xiaomi Mi 9 (cepheus) (YangQi0408)",
-    "title_zh": "Xiaomi Mi 9 (cepheus) (YangQi0408)"
+    "name": "models/clover",
+    "title": "clover",
+    "title_zh": "clover"
   },
   {
-    "name": "cheeseburger",
-    "title": "OnePlus 5 (cheeseburger)",
-    "title_zh": "一加 5（cheeseburger）"
+    "name": "models/cmi",
+    "title": "cmi",
+    "title_zh": "cmi"
   },
   {
-    "name": "cheeseburger-lss717",
-    "title": "OnePlus 5 (lss717)",
-    "title_zh": "OnePlus 5 (lss717)"
+    "name": "models/cupid",
+    "title": "cupid",
+    "title_zh": "cupid"
   },
   {
-    "name": "cheeseburger-maozedongae",
-    "title": "OnePlus 5 (maozedongae)",
-    "title_zh": "OnePlus 5 (maozedongae)"
+    "name": "models/d1x",
+    "title": "d1x",
+    "title_zh": "d1x"
   },
   {
-    "name": "chiron",
-    "title": "Xiaomi MIX 2 (chiron)",
-    "title_zh": "小米 MIX 2（chiron）"
+    "name": "models/d2xq",
+    "title": "d2xq",
+    "title_zh": "d2xq"
   },
   {
-    "name": "chiron-sbccc1888",
-    "title": "Xiaomi Mi MIX 2, 6 GB / 128 GB; measured revision 2.1 (sbccc1888)",
-    "title_zh": "Xiaomi Mi MIX 2, 6 GB / 128 GB; measured revision 2.1 (sbccc1888)"
+    "name": "models/dada",
+    "title": "dada",
+    "title_zh": "dada"
   },
   {
-    "name": "clover",
-    "title": "Xiaomi Mi Pad 4 LTE (clover)",
-    "title_zh": "小米平板 4 LTE（clover）"
+    "name": "models/dada2",
+    "title": "dada2",
+    "title_zh": "dada2"
   },
   {
-    "name": "d2xq",
-    "title": "Samsung Galaxy Note10+ 5G (SM-N9760)",
-    "title_zh": "Samsung Galaxy Note10+ 5G (SM-N9760)"
+    "name": "models/dali",
+    "title": "dali",
+    "title_zh": "dali"
   },
   {
-    "name": "dada",
-    "title": "Xiaomi 15 (dada)",
-    "title_zh": "小米 15（dada）"
+    "name": "models/dandelion",
+    "title": "dandelion",
+    "title_zh": "dandelion"
   },
   {
-    "name": "dada2",
-    "title": "Redmi K80 Pro",
-    "title_zh": "Redmi K80 Pro"
+    "name": "models/dby-w09",
+    "title": "dby-w09",
+    "title_zh": "dby-w09"
   },
   {
-    "name": "dali",
-    "title": "Redmi K80 Ultra (dali)",
-    "title_zh": "Redmi K80 Ultra（dali）"
+    "name": "models/dipper",
+    "title": "dipper",
+    "title_zh": "dipper"
   },
   {
-    "name": "dandelion",
-    "title": "Redmi 9A (dandelion)",
-    "title_zh": "Redmi 9A（dandelion）"
+    "name": "models/diting",
+    "title": "diting",
+    "title_zh": "diting"
   },
   {
-    "name": "dipper",
-    "title": "Xiaomi Mi 8 (dipper)",
-    "title_zh": "小米 8（dipper）"
+    "name": "models/dizi",
+    "title": "dizi",
+    "title_zh": "dizi"
   },
   {
-    "name": "dizi",
-    "title": "Xiaomi Redmi Pad Pro (dizi); ruan unverified",
-    "title_zh": "Xiaomi Redmi Pad Pro (dizi); ruan unverified"
+    "name": "models/dodge",
+    "title": "dodge",
+    "title_zh": "dodge"
   },
   {
-    "name": "droidvm",
-    "title": "DroidVM guest (crosvm on Gunyah)",
-    "title_zh": "DroidVM 客户机（Gunyah 上的 crosvm）"
+    "name": "models/droidvm",
+    "title": "droidvm",
+    "title_zh": "droidvm"
   },
   {
-    "name": "droidvm-lateautumn233",
-    "title": "DroidVM guest (crosvm on Gunyah) (lateautumn233)",
-    "title_zh": "DroidVM guest (crosvm on Gunyah) (lateautumn233)"
+    "name": "models/dumpling",
+    "title": "dumpling",
+    "title_zh": "dumpling"
   },
   {
-    "name": "droidvm-neko17awa",
-    "title": "DroidVM guest (crosvm on Gunyah) (Neko17awa)",
-    "title_zh": "DroidVM guest (crosvm on Gunyah) (Neko17awa)"
+    "name": "models/e5",
+    "title": "e5",
+    "title_zh": "e5"
   },
   {
-    "name": "e5",
-    "title": "Rongyue E5 (e5)",
-    "title_zh": "Rongyue E5（e5）"
+    "name": "models/elden",
+    "title": "elden",
+    "title_zh": "elden"
   },
   {
-    "name": "elden",
-    "title": "Lenovo Legion Y700 Gen 4 (elden)",
-    "title_zh": "联想拯救者 Y700 四代（elden）"
+    "name": "models/elish",
+    "title": "elish",
+    "title_zh": "elish"
   },
   {
-    "name": "elish",
-    "title": "Xiaomi Pad 5 Pro Wi-Fi (elish)",
-    "title_zh": "小米平板 5 Pro Wi-Fi（elish）"
+    "name": "models/enchilada",
+    "title": "enchilada",
+    "title_zh": "enchilada"
   },
   {
-    "name": "enchilada",
-    "title": "OnePlus 6 (enchilada)",
-    "title_zh": "一加 6（enchilada）"
+    "name": "models/enuma",
+    "title": "enuma",
+    "title_zh": "enuma"
   },
   {
-    "name": "enchilada-keyfan",
-    "title": "OnePlus 6 (keyfan)",
-    "title_zh": "OnePlus 6 (keyfan)"
+    "name": "models/erhai",
+    "title": "erhai",
+    "title_zh": "erhai"
   },
   {
-    "name": "enchilada-wangshaofan82-png",
-    "title": "OnePlus 6 (wangshaofan82-png)",
-    "title_zh": "OnePlus 6 (wangshaofan82-png)"
+    "name": "models/evb10",
+    "title": "evb10",
+    "title_zh": "evb10"
   },
   {
-    "name": "enuma",
-    "title": "Xiaomi Pad 5 Pro 5G (enuma)",
-    "title_zh": "小米平板 5 Pro 5G（enuma）"
+    "name": "models/fairlady",
+    "title": "fairlady",
+    "title_zh": "fairlady"
   },
   {
-    "name": "enuma-alghiffaryfa19",
-    "title": "Xiaomi Pad 5 Pro 5G / iPadOS 17.7.11 bring-up (alghiffaryfa19)",
-    "title_zh": "Xiaomi Pad 5 Pro 5G / iPadOS 17.7.11 bring-up (alghiffaryfa19)"
+    "name": "models/fajita",
+    "title": "fajita",
+    "title_zh": "fajita"
   },
   {
-    "name": "enuma-tlrenhb",
-    "title": "Xiaomi Pad 5 Pro 5G (Tlrenhb)",
-    "title_zh": "Xiaomi Pad 5 Pro 5G (Tlrenhb)"
+    "name": "models/flashlm",
+    "title": "flashlm",
+    "title_zh": "flashlm"
   },
   {
-    "name": "erhai",
-    "title": "OnePlus Pad 2 Pro (erhai)",
-    "title_zh": "一加平板 2 Pro（erhai）"
+    "name": "models/fuxi",
+    "title": "fuxi",
+    "title_zh": "fuxi"
   },
   {
-    "name": "evb10",
-    "title": "Rockchip RK3588 EVB10 V10",
-    "title_zh": "Rockchip RK3588 EVB10 V10"
+    "name": "models/g0245d",
+    "title": "g0245d",
+    "title_zh": "g0245d"
   },
   {
-    "name": "fairlady",
-    "title": "OnePlus 15T (fairlady)",
-    "title_zh": "一加 15T（fairlady）"
+    "name": "models/gauguin",
+    "title": "gauguin",
+    "title_zh": "gauguin"
   },
   {
-    "name": "fajita",
-    "title": "OnePlus 6T (fajita)",
-    "title_zh": "一加 6T（fajita）"
+    "name": "models/giulia",
+    "title": "giulia",
+    "title_zh": "giulia"
   },
   {
-    "name": "flashlm",
-    "title": "LG V50 ThinQ (LM-V500, flashlm)",
-    "title_zh": "LG V50 ThinQ (LM-V500, flashlm)"
+    "name": "models/grus",
+    "title": "grus",
+    "title_zh": "grus"
   },
   {
-    "name": "fuxi",
-    "title": "Xiaomi 13 (fuxi)",
-    "title_zh": "小米 13（fuxi）"
+    "name": "models/gta4l",
+    "title": "gta4l",
+    "title_zh": "gta4l"
   },
   {
-    "name": "fuxi-0721gpt",
-    "title": "Xiaomi 13 (0721GPT)",
-    "title_zh": "Xiaomi 13 (0721GPT)"
+    "name": "models/gts7fewifi",
+    "title": "gts7fewifi",
+    "title_zh": "gts7fewifi"
   },
   {
-    "name": "fuxi-hanzi123-bilp",
-    "title": "Xiaomi 13 (hanzi123-bilp)",
-    "title_zh": "Xiaomi 13 (hanzi123-bilp)"
+    "name": "models/gts7xlwifi",
+    "title": "gts7xlwifi",
+    "title_zh": "gts7xlwifi"
   },
   {
-    "name": "fuxi-kerfand",
-    "title": "Xiaomi 13 (Kerfand)",
-    "title_zh": "Xiaomi 13 (Kerfand)"
+    "name": "models/gts9uwifi",
+    "title": "gts9uwifi",
+    "title_zh": "gts9uwifi"
   },
   {
-    "name": "fuxi-ljhhkx529",
-    "title": "Xiaomi 13 (ljhhkx529)",
-    "title_zh": "Xiaomi 13 (ljhhkx529)"
+    "name": "models/guacamole",
+    "title": "guacamole",
+    "title_zh": "guacamole"
   },
   {
-    "name": "fuxi-minecraftvm",
-    "title": "Xiaomi 13 (MinecraftVM)",
-    "title_zh": "Xiaomi 13 (MinecraftVM)"
+    "name": "models/guamp",
+    "title": "guamp",
+    "title_zh": "guamp"
   },
   {
-    "name": "fuxi-mouse233",
-    "title": "Xiaomi 13 (mouse233)",
-    "title_zh": "Xiaomi 13 (mouse233)"
+    "name": "models/haydn",
+    "title": "haydn",
+    "title_zh": "haydn"
   },
   {
-    "name": "fuxi-oddlylabs",
-    "title": "Xiaomi 13 (OddlyLabs)",
-    "title_zh": "Xiaomi 13 (OddlyLabs)"
+    "name": "models/hero2lte",
+    "title": "hero2lte",
+    "title_zh": "hero2lte"
   },
   {
-    "name": "fuxi-sohytrs",
-    "title": "Xiaomi 13 (Sohytrs)",
-    "title_zh": "Xiaomi 13 (Sohytrs)"
+    "name": "models/houji",
+    "title": "houji",
+    "title_zh": "houji"
   },
   {
-    "name": "fuxi-star-mailaz",
-    "title": "Xiaomi 13 (Star-mailaz)",
-    "title_zh": "Xiaomi 13 (Star-mailaz)"
+    "name": "models/hummer",
+    "title": "hummer",
+    "title_zh": "hummer"
   },
   {
-    "name": "fuxi-xyvern08371",
-    "title": "Xiaomi 13 (SM8550) (Xyvern08371)",
-    "title_zh": "Xiaomi 13 (SM8550) (Xyvern08371)"
+    "name": "models/instantnoodlep",
+    "title": "instantnoodlep",
+    "title_zh": "instantnoodlep"
   },
   {
-    "name": "fuxi-yigezhong011-ops",
-    "title": "Xiaomi 13 (yigezhong011-ops)",
-    "title_zh": "Xiaomi 13 (yigezhong011-ops)"
+    "name": "models/ishtar",
+    "title": "ishtar",
+    "title_zh": "ishtar"
   },
   {
-    "name": "gauguin",
-    "title": "Motorola Moto G 5G (gauguin)",
-    "title_zh": "摩托罗拉 Moto G 5G（gauguin）"
+    "name": "models/j716f",
+    "title": "j716f",
+    "title_zh": "j716f"
   },
   {
-    "name": "giulia",
-    "title": "OnePlus Ace 5 (giulia)",
-    "title_zh": "一加 Ace 5（giulia）"
+    "name": "models/kebab",
+    "title": "kebab",
+    "title_zh": "kebab"
   },
   {
-    "name": "gta4l",
-    "title": "Samsung Galaxy Tab A7 10.4 (gta4l)",
-    "title_zh": "三星 Galaxy Tab A7 10.4（gta4l）"
+    "name": "models/kenzo",
+    "title": "kenzo",
+    "title_zh": "kenzo"
   },
   {
-    "name": "gta4l-gta4lunix",
-    "title": "Samsung Galaxy Tab A7 10.4 (2020) (gta4lunix)",
-    "title_zh": "Samsung Galaxy Tab A7 10.4 (2020) (gta4lunix)"
+    "name": "models/komodo",
+    "title": "komodo",
+    "title_zh": "komodo"
   },
   {
-    "name": "gta4l-ilovemykedi",
-    "title": "Samsung Galaxy Tab A7 10.4 (2020) (ilovemykedi)",
-    "title_zh": "Samsung Galaxy Tab A7 10.4 (2020) (ilovemykedi)"
+    "name": "models/lafa",
+    "title": "lafa",
+    "title_zh": "lafa"
   },
   {
-    "name": "gts9uwifi",
-    "title": "Samsung Galaxy Tab S9 Ultra Wi-Fi (gts9uwifi)",
-    "title_zh": "三星 Galaxy Tab S9 Ultra Wi-Fi（gts9uwifi）"
+    "name": "models/lavender",
+    "title": "lavender",
+    "title_zh": "lavender"
   },
   {
-    "name": "guacamole",
-    "title": "OnePlus 7 Pro (guacamole)",
-    "title_zh": "OnePlus 7 Pro（guacamole）"
+    "name": "models/lemonades",
+    "title": "lemonades",
+    "title_zh": "lemonades"
   },
   {
-    "name": "guamp",
-    "title": "Motorola Moto G9 Play (guamp)",
-    "title_zh": "摩托罗拉 Moto G9 Play（guamp）"
+    "name": "models/liuqin",
+    "title": "liuqin",
+    "title_zh": "liuqin"
   },
   {
-    "name": "haydn",
-    "title": "Redmi K40 Pro (haydn)",
-    "title_zh": "Redmi K40 Pro（haydn）"
+    "name": "models/lmipro",
+    "title": "lmipro",
+    "title_zh": "lmipro"
   },
   {
-    "name": "haydn-iamojz",
-    "title": "Xiaomi Redmi K40 Pro / K40 Pro+ / Mi 11i (haydn), SM8350 (iamOJZ)",
-    "title_zh": "Xiaomi Redmi K40 Pro / K40 Pro+ / Mi 11i (haydn), SM8350 (iamOJZ)"
+    "name": "models/lumia950",
+    "title": "lumia950",
+    "title_zh": "lumia950"
   },
   {
-    "name": "haydn-xiaomi-haydn-dev",
-    "title": "Xiaomi K40 Pro (xiaomi-haydn-dev)",
-    "title_zh": "Xiaomi K40 Pro (xiaomi-haydn-dev)"
+    "name": "models/luming",
+    "title": "luming",
+    "title_zh": "luming"
   },
   {
-    "name": "hero2lte",
-    "title": "Samsung Galaxy S7 Edge (hero2lte)",
-    "title_zh": "三星 Galaxy S7 Edge（hero2lte）"
+    "name": "models/m2381",
+    "title": "m2381",
+    "title_zh": "m2381"
   },
   {
-    "name": "houji",
-    "title": "Xiaomi 14 (houji)",
-    "title_zh": "小米 14（houji）"
+    "name": "models/malachite",
+    "title": "malachite",
+    "title_zh": "malachite"
   },
   {
-    "name": "houji-kizashi3",
-    "title": "Xiaomi 14 houji SM8650 (Kizashi3)",
-    "title_zh": "Xiaomi 14 houji SM8650 (Kizashi3)"
+    "name": "models/marble",
+    "title": "marble",
+    "title_zh": "marble"
   },
   {
-    "name": "houji-sakayorilroha",
-    "title": "Xiaomi 14 houji SM8650 (SAKAYORILROHA)",
-    "title_zh": "Xiaomi 14 houji SM8650 (SAKAYORILROHA)"
+    "name": "models/meizu15",
+    "title": "meizu15",
+    "title_zh": "meizu15"
   },
   {
-    "name": "hummer",
-    "title": "OnePlus Ace 5 Pro (hummer)",
-    "title_zh": "一加 Ace 5 Pro（hummer）"
+    "name": "models/meizu21",
+    "title": "meizu21",
+    "title_zh": "meizu21"
   },
   {
-    "name": "instantnoodlep",
-    "title": "OnePlus 8 Pro (instantnoodlep)",
-    "title_zh": "一加 8 Pro（instantnoodlep）"
+    "name": "models/merlinx",
+    "title": "merlinx",
+    "title_zh": "merlinx"
   },
   {
-    "name": "instantnoodlep-zhangp996",
-    "title": "OnePlus 8 Pro IN2020, 8 GiB, 1080x2376, UFS root (zhangp996)",
-    "title_zh": "OnePlus 8 Pro IN2020, 8 GiB, 1080x2376, UFS root (zhangp996)"
+    "name": "models/mh2lm",
+    "title": "mh2lm",
+    "title_zh": "mh2lm"
   },
   {
-    "name": "ishtar",
-    "title": "Xiaomi 13 Ultra (ishtar)",
-    "title_zh": "小米 13 Ultra（ishtar）"
+    "name": "models/miatoll",
+    "title": "miatoll",
+    "title_zh": "miatoll"
   },
   {
-    "name": "ishtar-markakash",
-    "title": "Xiaomi 13 Ultra - XNU (iOS 18) (markakash)",
-    "title_zh": "Xiaomi 13 Ultra - XNU (iOS 18) (markakash)"
+    "name": "models/miro",
+    "title": "miro",
+    "title_zh": "miro"
   },
   {
-    "name": "ishtar-peter8889",
-    "title": "Xiaomi 13 Ultra - XNU (iOS 18) (peter8889)",
-    "title_zh": "Xiaomi 13 Ultra - XNU (iOS 18) (peter8889)"
+    "name": "models/mondrian",
+    "title": "mondrian",
+    "title_zh": "mondrian"
   },
   {
-    "name": "j716f",
-    "title": "Lenovo Xiaoxin Pad Pro 2021 (j716f)",
-    "title_zh": "联想小新 Pad Pro 2021（j716f）"
+    "name": "models/munch",
+    "title": "munch",
+    "title_zh": "munch"
   },
   {
-    "name": "j716f-emptyghost",
-    "title": "Lenovo Xiaoxin Pad Pro 2021 TB-J716F UniXNU bring-up (EmptyGhost)",
-    "title_zh": "Lenovo Xiaoxin Pad Pro 2021 TB-J716F UniXNU bring-up (EmptyGhost)"
+    "name": "models/muyu",
+    "title": "muyu",
+    "title_zh": "muyu"
   },
   {
-    "name": "kebab",
-    "title": "OnePlus 8T (kebab)",
-    "title_zh": "一加 8T（kebab）"
+    "name": "models/myron",
+    "title": "myron",
+    "title_zh": "myron"
   },
   {
-    "name": "kebab-stevedang67889",
-    "title": "OnePlus 8T (stevedang67889)",
-    "title_zh": "OnePlus 8T (stevedang67889)"
+    "name": "models/nabu",
+    "title": "nabu",
+    "title_zh": "nabu"
   },
   {
-    "name": "komodo",
-    "title": "Google Pixel 9 Pro XL (komodo)",
-    "title_zh": "Google Pixel 9 Pro XL（komodo）"
+    "name": "models/nash",
+    "title": "nash",
+    "title_zh": "nash"
   },
   {
-    "name": "lemonades",
-    "title": "OnePlus 9R (lemonades)",
-    "title_zh": "一加 9R（lemonades）"
+    "name": "models/negroni",
+    "title": "negroni",
+    "title_zh": "negroni"
   },
   {
-    "name": "liuqin",
-    "title": "Xiaomi Pad 6 Pro (liuqin)",
-    "title_zh": "小米平板 6 Pro（liuqin）"
+    "name": "models/nio",
+    "title": "nio",
+    "title_zh": "nio"
   },
   {
-    "name": "lmipro",
-    "title": "Redmi K30 Pro Zoom Edition (lmipro)",
-    "title_zh": "Redmi K30 Pro 变焦版（lmipro）"
+    "name": "models/nuwa",
+    "title": "nuwa",
+    "title_zh": "nuwa"
   },
   {
-    "name": "lmipro-yang232138",
-    "title": "Redmi K30 Pro Zoom Edition (lmipro, SM8250) (yang232138)",
-    "title_zh": "Redmi K30 Pro Zoom Edition (lmipro, SM8250) (yang232138)"
+    "name": "models/nx721j",
+    "title": "nx721j",
+    "title_zh": "nx721j"
   },
   {
-    "name": "lumia950",
-    "title": "Microsoft Lumia 950",
-    "title_zh": "Microsoft Lumia 950"
+    "name": "models/nx729j",
+    "title": "nx729j",
+    "title_zh": "nx729j"
   },
   {
-    "name": "lumia950-shrimpapplepro",
-    "title": "Microsoft Lumia 950 — P1 build research (shrimpapplepro)",
-    "title_zh": "Microsoft Lumia 950 — P1 build research (shrimpapplepro)"
+    "name": "models/nx769j",
+    "title": "nx769j",
+    "title_zh": "nx769j"
   },
   {
-    "name": "lumia950-twisstedtoast",
-    "title": "Microsoft Lumia 950 — P1 build research (TwisstedToast)",
-    "title_zh": "Microsoft Lumia 950 — P1 build research (TwisstedToast)"
+    "name": "models/odin",
+    "title": "odin",
+    "title_zh": "odin"
   },
   {
-    "name": "luming",
-    "title": "Xiaomi Civi 5 Pro (luming)",
-    "title_zh": "小米 Civi 5 Pro（luming）"
+    "name": "models/odin3",
+    "title": "odin3",
+    "title_zh": "odin3"
   },
   {
-    "name": "luming-infinityex-rsxq",
-    "title": "Xiaomi Civi 5 Pro (SM8735; format-2 bring-up, iPadOS 17.7.11 profile) (infinityEX-RSXQ)",
-    "title_zh": "Xiaomi Civi 5 Pro (SM8735; format-2 bring-up, iPadOS 17.7.11 profile) (infinityEX-RSXQ)"
+    "name": "models/oneplus13t",
+    "title": "oneplus13t",
+    "title_zh": "oneplus13t"
   },
   {
-    "name": "m2381",
-    "title": "Meizu 20 Classic (m2381)",
-    "title_zh": "魅族 20 Classic（m2381）"
+    "name": "models/onyx",
+    "title": "onyx",
+    "title_zh": "onyx"
   },
   {
-    "name": "m2381-riverkawa271828",
-    "title": "Meizu 20 Classic (RiverKawa271828)",
-    "title_zh": "Meizu 20 Classic (RiverKawa271828)"
+    "name": "models/opd2515",
+    "title": "opd2515",
+    "title_zh": "opd2515"
   },
   {
-    "name": "malachite",
-    "title": "POCO X7 / Redmi Note 14 Pro 5G (malachite)",
-    "title_zh": "POCO X7 / Redmi Note 14 Pro 5G（malachite）"
+    "name": "models/orangepi5",
+    "title": "orangepi5",
+    "title_zh": "orangepi5"
   },
   {
-    "name": "marble",
-    "title": "Redmi Note 12 Turbo / POCO F5 (marble)",
-    "title_zh": "Redmi Note 12 Turbo / POCO F5（marble）"
+    "name": "models/pandora",
+    "title": "pandora",
+    "title_zh": "pandora"
   },
   {
-    "name": "marble-milacy",
-    "title": "Redmi Note 12 Turbo / POCO F5 (marble), Qualcomm SM7475 (Snapdragon 7+ Gen 2) (MiLacy)",
-    "title_zh": "Redmi Note 12 Turbo / POCO F5 (marble), Qualcomm SM7475 (Snapdragon 7+ Gen 2) (MiLacy)"
+    "name": "models/pclm10",
+    "title": "pclm10",
+    "title_zh": "pclm10"
   },
   {
-    "name": "merlinx",
-    "title": "Xiaomi Redmi Note 9 (merlinx)",
-    "title_zh": "Redmi Note 9（merlinx）"
+    "name": "models/pd2049",
+    "title": "pd2049",
+    "title_zh": "pd2049"
   },
   {
-    "name": "mh2lm",
-    "title": "LG G8X ThinQ (LM-G850, mh2lm)",
-    "title_zh": "LG G8X ThinQ (LM-G850, mh2lm)"
+    "name": "models/pdx203",
+    "title": "pdx203",
+    "title_zh": "pdx203"
   },
   {
-    "name": "mondrian",
-    "title": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up",
-    "title_zh": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up"
+    "name": "models/peridot",
+    "title": "peridot",
+    "title_zh": "peridot"
   },
   {
-    "name": "mondrian-mzyxsl",
-    "title": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up (mzyxsl)",
-    "title_zh": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up (mzyxsl)"
+    "name": "models/phy120",
+    "title": "phy120",
+    "title_zh": "phy120"
   },
   {
-    "name": "mondrian-wohusaixing",
-    "title": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up (wohusaixing)",
-    "title_zh": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up (wohusaixing)"
+    "name": "models/piano",
+    "title": "piano",
+    "title_zh": "piano"
   },
   {
-    "name": "mondrian-xtom0706",
-    "title": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up (XTOM0706)",
-    "title_zh": "Redmi K60 (mondrian/SM8475): UniXNU UEFI bring-up (XTOM0706)"
+    "name": "models/picasso",
+    "title": "picasso",
+    "title_zh": "picasso"
   },
   {
-    "name": "munch",
-    "title": "Xiaomi Redmi K40S (munch, 22021211RC)",
-    "title_zh": "Xiaomi Redmi K40S (munch, 22021211RC)"
+    "name": "models/pipa",
+    "title": "pipa",
+    "title_zh": "pipa"
   },
   {
-    "name": "munch-erodenine",
-    "title": "Xiaomi Redmi K40S (munch, 22021211RC) (ErodeNine)",
-    "title_zh": "Xiaomi Redmi K40S (munch, 22021211RC) (ErodeNine)"
+    "name": "models/pje110",
+    "title": "pje110",
+    "title_zh": "pje110"
   },
   {
-    "name": "muyu",
-    "title": "Xiaomi Pad 7 Pro",
-    "title_zh": "Xiaomi Pad 7 Pro"
+    "name": "models/pma120",
+    "title": "pma120",
+    "title_zh": "pma120"
   },
   {
-    "name": "myron",
-    "title": "Redmi K90 Pro Max / Poco F8 Ultra (myron)",
-    "title_zh": "Redmi K90 Pro Max / Poco F8 Ultra（myron）"
+    "name": "models/polaris",
+    "title": "polaris",
+    "title_zh": "polaris"
   },
   {
-    "name": "myron-typeun",
-    "title": "Redmi K90 Pro Max (Typeun)",
-    "title_zh": "Redmi K90 Pro Max (Typeun)"
+    "name": "models/pong",
+    "title": "pong",
+    "title_zh": "pong"
   },
   {
-    "name": "nabu",
-    "title": "Xiaomi Pad 5 (nabu)",
-    "title_zh": "小米平板 5（nabu）"
+    "name": "models/pudding",
+    "title": "pudding",
+    "title_zh": "pudding"
   },
   {
-    "name": "nabu-3214791900-del",
-    "title": "Xiaomi Pad 5 (3214791900-del)",
-    "title_zh": "Xiaomi Pad 5 (3214791900-del)"
+    "name": "models/pyxis",
+    "title": "pyxis",
+    "title_zh": "pyxis"
   },
   {
-    "name": "nabu-lee-kenneth",
-    "title": "Xiaomi Pad 5 (lee-kenneth)",
-    "title_zh": "Xiaomi Pad 5 (lee-kenneth)"
+    "name": "models/q2q",
+    "title": "q2q",
+    "title_zh": "q2q"
   },
   {
-    "name": "nabu-zzc775",
-    "title": "Xiaomi Pad 5 (zzc775)",
-    "title_zh": "Xiaomi Pad 5 (zzc775)"
+    "name": "models/qemu",
+    "title": "qemu",
+    "title_zh": "qemu"
   },
   {
-    "name": "nash",
-    "title": "Motorola Moto Z2 Force (nash)",
-    "title_zh": "摩托罗拉 Moto Z2 Force（nash）"
+    "name": "models/r11",
+    "title": "r11",
+    "title_zh": "r11"
   },
   {
-    "name": "negroni",
-    "title": "OnePlus 10 Pro 5G (negroni)",
-    "title_zh": "一加 10 Pro 5G（negroni）"
+    "name": "models/r8q",
+    "title": "r8q",
+    "title_zh": "r8q"
   },
   {
-    "name": "nuwa",
-    "title": "Xiaomi 13 Pro (nuwa)",
-    "title_zh": "小米 13 Pro（nuwa）"
+    "name": "models/raphael",
+    "title": "raphael",
+    "title_zh": "raphael"
   },
   {
-    "name": "nuwa-alex-enix",
-    "title": "Xiaomi 13 Pro (nuwa) (Alex-Enix)",
-    "title_zh": "Xiaomi 13 Pro (nuwa) (Alex-Enix)"
+    "name": "models/rmx1971",
+    "title": "rmx1971",
+    "title_zh": "rmx1971"
   },
   {
-    "name": "nuwa-pubglite55",
-    "title": "Xiaomi 13 Pro (pubglite55)",
-    "title_zh": "Xiaomi 13 Pro (pubglite55)"
+    "name": "models/rmx3551",
+    "title": "rmx3551",
+    "title_zh": "rmx3551"
   },
   {
-    "name": "nuwa-wuuuweiii",
-    "title": "Xiaomi 13 Pro (WuuuWeiii)",
-    "title_zh": "Xiaomi 13 Pro (WuuuWeiii)"
+    "name": "models/rmx3823",
+    "title": "rmx3823",
+    "title_zh": "rmx3823"
   },
   {
-    "name": "nx721j",
-    "title": "ZTE Nubia Z60 Ultra (nx721j)",
-    "title_zh": "中兴努比亚 Z60 Ultra（nx721j）"
+    "name": "models/rothko",
+    "title": "rothko",
+    "title_zh": "rothko"
   },
   {
-    "name": "nx729j",
-    "title": "Nubia RedMagic 8 Pro / 8 Pro+ (nx729j)",
-    "title_zh": "努比亚红魔 8 Pro / 8 Pro+（nx729j）"
+    "name": "models/ruby",
+    "title": "ruby",
+    "title_zh": "ruby"
   },
   {
-    "name": "nx769j",
-    "title": "nubia RedMagic 9 Pro / 9 Pro+ / 9S Pro / 9S Pro+ (NX769J)",
-    "title_zh": "nubia RedMagic 9 Pro / 9 Pro+ / 9S Pro / 9S Pro+ (NX769J)"
+    "name": "models/ruyi",
+    "title": "ruyi",
+    "title_zh": "ruyi"
   },
   {
-    "name": "oneplus13t",
-    "title": "OnePlus 13T (oneplus13t)",
-    "title_zh": "一加 13T（oneplus13t）"
+    "name": "models/sagit",
+    "title": "sagit",
+    "title_zh": "sagit"
   },
   {
-    "name": "pandora",
-    "title": "Xiaomi 17 Pro (pandora)",
-    "title_zh": "小米 17 Pro（pandora）"
+    "name": "models/sheng",
+    "title": "sheng (community)",
+    "title_zh": "sheng（社区）"
   },
   {
-    "name": "pd2049",
-    "title": "vivo iQOO 7 V2049A early XNU bring-up",
-    "title_zh": "vivo iQOO 7 V2049A early XNU bring-up"
+    "name": "models/sheng-macos",
+    "title": "sheng-macos",
+    "title_zh": "sheng-macos"
   },
   {
-    "name": "pdx203",
-    "title": "Sony Xperia 1 II (pdx203)",
-    "title_zh": "Sony Xperia 1 II（pdx203）"
+    "name": "models/shennong",
+    "title": "shennong",
+    "title_zh": "shennong"
   },
   {
-    "name": "peridot",
-    "title": "Redmi Turbo 3 / Poco F6 (peridot)",
-    "title_zh": "Redmi Turbo 3 / Poco F6（peridot）"
+    "name": "models/sirius",
+    "title": "sirius",
+    "title_zh": "sirius"
   },
   {
-    "name": "peridot-hoshikv",
-    "title": "Xiaomi Poco F6 / Redmi Turbo 3 (hoshikv)",
-    "title_zh": "Xiaomi Poco F6 / Redmi Turbo 3 (hoshikv)"
+    "name": "models/sm-t970",
+    "title": "sm-t970",
+    "title_zh": "sm-t970"
   },
   {
-    "name": "peridot-wzy114514sb",
-    "title": "Poco F6 / Redmi Turbo 3 (wzy114514sb)",
-    "title_zh": "Poco F6 / Redmi Turbo 3 (wzy114514sb)"
+    "name": "models/songyuan",
+    "title": "songyuan",
+    "title_zh": "songyuan"
   },
   {
-    "name": "phy120",
-    "title": "OPPO Find X7 Ultra (PHY120)",
-    "title_zh": "OPPO Find X7 Ultra（PHY120）"
+    "name": "models/starlte",
+    "title": "starlte",
+    "title_zh": "starlte"
   },
   {
-    "name": "piano",
-    "title": "Xiaomi Pad 8 Pro (piano)",
-    "title_zh": "小米平板 8 Pro（piano）"
+    "name": "models/sweet",
+    "title": "sweet",
+    "title_zh": "sweet"
   },
   {
-    "name": "picasso",
-    "title": "Redmi K30 5G (picasso)",
-    "title_zh": "Redmi K30 5G（picasso）"
+    "name": "models/t610yp",
+    "title": "t610yp",
+    "title_zh": "t610yp"
   },
   {
-    "name": "picasso-minhtritt1996",
-    "title": "Redmi K30 5G (minhtritt1996)",
-    "title_zh": "Redmi K30 5G (minhtritt1996)"
+    "name": "models/tb128fu",
+    "title": "tb128fu",
+    "title_zh": "tb128fu"
   },
   {
-    "name": "picasso-silenzio111",
-    "title": "Redmi K30 5G (silenzio111)",
-    "title_zh": "Redmi K30 5G (silenzio111)"
+    "name": "models/tb365fc",
+    "title": "tb365fc",
+    "title_zh": "tb365fc"
   },
   {
-    "name": "picasso-suzukir1n",
-    "title": "Redmi K30 5G targeting iPhone X iOS 16; Darwin 22 ABI and firmware pending (SuzukiR1n)",
-    "title_zh": "Redmi K30 5G targeting iPhone X iOS 16; Darwin 22 ABI and firmware pending (SuzukiR1n)"
+    "name": "models/tb371fc",
+    "title": "tb371fc",
+    "title_zh": "tb371fc"
   },
   {
-    "name": "picasso-tselongson",
-    "title": "Redmi K30 5G (tselongson)",
-    "title_zh": "Redmi K30 5G (tselongson)"
+    "name": "models/tb375fc",
+    "title": "tb375fc",
+    "title_zh": "tb375fc"
   },
   {
-    "name": "pipa",
-    "title": "Xiaomi Pad 6 (pipa)",
-    "title_zh": "小米平板 6（pipa）"
+    "name": "models/thor",
+    "title": "thor",
+    "title_zh": "thor"
   },
   {
-    "name": "pipa-fft-infra",
-    "title": "Xiaomi Pad 6 (FFT-infra)",
-    "title_zh": "Xiaomi Pad 6 (FFT-infra)"
+    "name": "models/thyme",
+    "title": "thyme",
+    "title_zh": "thyme"
   },
   {
-    "name": "pipa-xvanturing",
-    "title": "Xiaomi Pad 6 (xVanTuring)",
-    "title_zh": "Xiaomi Pad 6 (xVanTuring)"
+    "name": "models/tundra",
+    "title": "tundra",
+    "title_zh": "tundra"
   },
   {
-    "name": "polaris",
-    "title": "Xiaomi Mi MIX 2S (polaris)",
-    "title_zh": "小米 MIX 2S（polaris）"
+    "name": "models/udon",
+    "title": "udon",
+    "title_zh": "udon"
   },
   {
-    "name": "polaris-puszekreksio",
-    "title": "Xiaomi Mi MIX 2S (PuszekReksio)",
-    "title_zh": "Xiaomi Mi MIX 2S (PuszekReksio)"
+    "name": "models/uke",
+    "title": "uke",
+    "title_zh": "uke"
   },
   {
-    "name": "polaris-sprmd",
-    "title": "Xiaomi Mi MIX 2S (SPRMD)",
-    "title_zh": "Xiaomi Mi MIX 2S (SPRMD)"
+    "name": "models/umi",
+    "title": "umi",
+    "title_zh": "umi"
   },
   {
-    "name": "pong",
-    "title": "Nothing Phone (2) (pong)",
-    "title_zh": "Nothing Phone (2)（pong）"
+    "name": "models/unicorn",
+    "title": "unicorn",
+    "title_zh": "unicorn"
   },
   {
-    "name": "pong-hxzbaka",
-    "title": "Nothing Phone (2): UniXNU UEFI bring-up (hxzbaka)",
-    "title_zh": "Nothing Phone (2): UniXNU UEFI bring-up (hxzbaka)"
+    "name": "models/unisoc",
+    "title": "unisoc",
+    "title_zh": "unisoc"
   },
   {
-    "name": "pong-y3d4",
-    "title": "Nothing Phone (2): UniXNU UEFI bring-up (Y3d4)",
-    "title_zh": "Nothing Phone (2): UniXNU UEFI bring-up (Y3d4)"
-  },
-  {
-    "name": "pudding",
-    "title": "Xiaomi 17 (pudding, qcom,canoe, SM8850)",
-    "title_zh": "Xiaomi 17 (pudding, qcom,canoe, SM8850)"
-  },
-  {
-    "name": "q2q",
-    "title": "Galaxy Z Fold3 (q2q)",
-    "title_zh": "Galaxy Z Fold3（q2q）"
-  },
-  {
-    "name": "qemu",
-    "title": "QEMU virt",
-    "title_zh": "QEMU virt"
-  },
-  {
-    "name": "r11",
-    "title": "OPPO R11 (r11)",
-    "title_zh": "OPPO R11（r11）"
-  },
-  {
-    "name": "raphael",
-    "title": "Redmi K20 Pro / Mi 9T Pro (raphael)",
-    "title_zh": "Redmi K20 Pro / Mi 9T Pro（raphael）"
-  },
-  {
-    "name": "raphael-johnleeeeeee678",
-    "title": "Redmi K20 Pro / Mi 9T Pro (raphael) (JohnLeeeeeee678)",
-    "title_zh": "Redmi K20 Pro / Mi 9T Pro (raphael) (JohnLeeeeeee678)"
-  },
-  {
-    "name": "rmx1971",
-    "title": "Realme 5 Pro",
-    "title_zh": "Realme 5 Pro"
-  },
-  {
-    "name": "rmx3823",
-    "title": "realme GT5 240W (RMX3823), kalama, 24 GiB, 1240x2772 AMOLED",
-    "title_zh": "realme GT5 240W (RMX3823), kalama, 24 GiB, 1240x2772 AMOLED"
-  },
-  {
-    "name": "ruyi",
-    "title": "Xiaomi MIX Flip (ruyi)",
-    "title_zh": "小米 MIX Flip（ruyi）"
-  },
-  {
-    "name": "ruyi-arnodorian123",
-    "title": "Xiaomi MIX Flip (ArnoDorian123)",
-    "title_zh": "Xiaomi MIX Flip (ArnoDorian123)"
-  },
-  {
-    "name": "ruyi-ehunshuaige",
-    "title": "Xiaomi MIX Flip (ehunshuaige)",
-    "title_zh": "Xiaomi MIX Flip (ehunshuaige)"
-  },
-  {
-    "name": "sagit",
-    "title": "Xiaomi Mi 6 (sagit)",
-    "title_zh": "小米 6（sagit）"
-  },
-  {
-    "name": "sheng-16crow",
-    "title": "Xiaomi Pad 6S Pro (16Crow)",
-    "title_zh": "Xiaomi Pad 6S Pro (16Crow)"
-  },
-  {
-    "name": "sheng-alghiffaryfa19",
-    "title": "Xiaomi Pad 6S Pro (alghiffaryfa19)",
-    "title_zh": "Xiaomi Pad 6S Pro (alghiffaryfa19)"
-  },
-  {
-    "name": "sheng-bai805",
-    "title": "Xiaomi Pad 6S Pro (bai805)",
-    "title_zh": "Xiaomi Pad 6S Pro (bai805)"
-  },
-  {
-    "name": "sheng-fft-infra",
-    "title": "Xiaomi Pad 6S Pro (FFT-infra)",
-    "title_zh": "Xiaomi Pad 6S Pro (FFT-infra)"
-  },
-  {
-    "name": "sheng-hxzbaka",
-    "title": "Xiaomi Pad 6S Pro (hxzbaka)",
-    "title_zh": "Xiaomi Pad 6S Pro (hxzbaka)"
-  },
-  {
-    "name": "sheng-jn7163",
-    "title": "Xiaomi Pad 6S Pro (jn7163)",
-    "title_zh": "Xiaomi Pad 6S Pro (jn7163)"
-  },
-  {
-    "name": "sheng-liangkam",
-    "title": "Xiaomi Pad 6S Pro (LiangKam)",
-    "title_zh": "Xiaomi Pad 6S Pro (LiangKam)"
-  },
-  {
-    "name": "sheng-lilinnan",
-    "title": "Xiaomi Pad 6S Pro (lilinnan)",
-    "title_zh": "Xiaomi Pad 6S Pro (lilinnan)"
-  },
-  {
-    "name": "sheng-macos",
-    "title": "macOS on sheng",
-    "title_zh": "sheng 上的 macOS"
-  },
-  {
-    "name": "sheng-thearchitectengineer",
-    "title": "Xiaomi Pad 6S Pro (TheArchitectEngineer)",
-    "title_zh": "Xiaomi Pad 6S Pro (TheArchitectEngineer)"
-  },
-  {
-    "name": "sheng-tkings4chan",
-    "title": "Xiaomi Pad 6S Pro (tkings4chan)",
-    "title_zh": "Xiaomi Pad 6S Pro (tkings4chan)"
-  },
-  {
-    "name": "sheng-v1-727",
-    "title": "Xiaomi Pad 6S Pro (v1-727)",
-    "title_zh": "Xiaomi Pad 6S Pro (v1-727)"
-  },
-  {
-    "name": "sheng-yeyingjun-codes",
-    "title": "Xiaomi Pad 6S Pro (yeyingjun-codes)",
-    "title_zh": "Xiaomi Pad 6S Pro (yeyingjun-codes)"
-  },
-  {
-    "name": "sheng-yuyaukong",
-    "title": "Xiaomi Pad 6S Pro (yuyaukong)",
-    "title_zh": "Xiaomi Pad 6S Pro (yuyaukong)"
-  },
-  {
-    "name": "shennong",
-    "title": "Xiaomi 14 Pro 23116PN5BC",
-    "title_zh": "Xiaomi 14 Pro 23116PN5BC"
-  },
-  {
-    "name": "sirius",
-    "title": "Xiaomi Mi 8 SE (sirius)",
-    "title_zh": "小米 8 SE（sirius）"
-  },
-  {
-    "name": "sirius-dddqmmx",
-    "title": "Xiaomi Mi 8 SE (dddqmmx)",
-    "title_zh": "Xiaomi Mi 8 SE (dddqmmx)"
-  },
-  {
-    "name": "sirius-huajifruit",
-    "title": "Xiaomi Mi 8 SE (HuajiFruit)",
-    "title_zh": "Xiaomi Mi 8 SE (HuajiFruit)"
-  },
-  {
-    "name": "sirius-yooglery",
-    "title": "Xiaomi Mi 8 SE (Yooglery)",
-    "title_zh": "Xiaomi Mi 8 SE (Yooglery)"
-  },
-  {
-    "name": "sm-t733",
-    "title": "Samsung Galaxy Tab S7 FE Wi-Fi (SM-T733)",
-    "title_zh": "三星 Galaxy Tab S7 FE Wi-Fi（SM-T733）"
-  },
-  {
-    "name": "songyuan",
-    "title": "REDMI K100 Pro Max (songyuan, SM8850 Canoe)",
-    "title_zh": "REDMI K100 Pro Max (songyuan, SM8850 Canoe)"
-  },
-  {
-    "name": "songyuan-aogg2023",
-    "title": "Redmi K90 Pro Max (songyuan) (aogg2023)",
-    "title_zh": "Redmi K90 Pro Max (songyuan) (aogg2023)"
-  },
-  {
-    "name": "songyuan-wukawl",
-    "title": "Redmi K90 Pro Max (songyuan) (WUKAWL)",
-    "title_zh": "Redmi K90 Pro Max (songyuan) (WUKAWL)"
-  },
-  {
-    "name": "sweet",
-    "title": "Redmi Note 10 Pro (sweet)",
-    "title_zh": "Redmi Note 10 Pro（sweet）"
-  },
-  {
-    "name": "sweet-zeroninevibedslop",
-    "title": "Xiaomi Redmi Note 10 Pro (zeroninevibedslop)",
-    "title_zh": "Xiaomi Redmi Note 10 Pro (zeroninevibedslop)"
-  },
-  {
-    "name": "t610yp",
-    "title": "Unisoc UMS512 / T610YP",
-    "title_zh": "Unisoc UMS512 / T610YP"
-  },
-  {
-    "name": "tb128fu",
-    "title": "Lenovo Xiaoxin Pad 2022 (tb128fu)",
-    "title_zh": "联想小新 Pad 2022（tb128fu）"
-  },
-  {
-    "name": "tb128fu-riceneeder",
-    "title": "Lenovo Xiaoxin Pad 2022 (TB128FU) (Riceneeder)",
-    "title_zh": "Lenovo Xiaoxin Pad 2022 (TB128FU) (Riceneeder)"
-  },
-  {
-    "name": "tb365fc",
-    "title": "Lenovo Xiaoxin Pad 12.1 (2025), Lenovo TB365FC (board cava_prc_consumer_wifi)",
-    "title_zh": "Lenovo Xiaoxin Pad 12.1 (2025), Lenovo TB365FC (board cava_prc_consumer_wifi)"
-  },
-  {
-    "name": "thyme",
-    "title": "Xiaomi Mi 10S (thyme)",
-    "title_zh": "小米 10S（thyme）"
-  },
-  {
-    "name": "thyme-coryyi",
-    "title": "Xiaomi Mi 10S / SM8250-AC UniXNU bring-up (measured 2026-10-24) (Coryyi)",
-    "title_zh": "Xiaomi Mi 10S / SM8250-AC UniXNU bring-up (measured 2026-10-24) (Coryyi)"
-  },
-  {
-    "name": "tundra",
-    "title": "Motorola moto s30 pro (tundra)",
-    "title_zh": "Motorola moto s30 pro (tundra)"
-  },
-  {
-    "name": "udon",
-    "title": "OnePlus Ace 2 / 11R (udon)",
-    "title_zh": "一加 Ace 2 / 11R（udon）"
-  },
-  {
-    "name": "uke",
-    "title": "Xiaomi Pad 7 / POCO Pad X1 (uke)",
-    "title_zh": "小米平板 7 / POCO Pad X1（uke）"
-  },
-  {
-    "name": "uke-iosnjbrepo",
-    "title": "Xiaomi Pad 7 (iOSNJBrepo)",
-    "title_zh": "Xiaomi Pad 7 (iOSNJBrepo)"
-  },
-  {
-    "name": "uke-wuhaoran956-cyber",
-    "title": "Xiaomi Pad 7 (wuhaoran956-cyber)",
-    "title_zh": "Xiaomi Pad 7 (wuhaoran956-cyber)"
-  },
-  {
-    "name": "umi",
-    "title": "Xiaomi Mi 10 (umi)",
-    "title_zh": "小米 10（umi）"
-  },
-  {
-    "name": "umi-agxmx666",
-    "title": "Xiaomi Mi 10 / SM8250 UniXNU bring-up (AGXMX666)",
-    "title_zh": "Xiaomi Mi 10 / SM8250 UniXNU bring-up (AGXMX666)"
-  },
-  {
-    "name": "umi-mouya-q",
-    "title": "Xiaomi Mi 10 / SM8250 UniXNU bring-up (mouya-q)",
-    "title_zh": "Xiaomi Mi 10 / SM8250 UniXNU bring-up (mouya-q)"
-  },
-  {
-    "name": "umi-neowiseq",
-    "title": "Xiaomi Mi 10 / SM8250 UniXNU bring-up (neowiseq)",
-    "title_zh": "Xiaomi Mi 10 / SM8250 UniXNU bring-up (neowiseq)"
-  },
-  {
-    "name": "unisoc",
-    "title": "Unisoc devices",
-    "title_zh": "Unisoc 设备"
-  },
-  {
-    "name": "unixnu-build",
+    "name": "models/unixnu-build",
     "title": "unixnu-build",
     "title_zh": "unixnu-build"
   },
   {
-    "name": "vermeer",
-    "title": "Redmi K70 (vermeer)",
-    "title_zh": "Redmi K70（vermeer）"
+    "name": "models/venus",
+    "title": "venus",
+    "title_zh": "venus"
   },
   {
-    "name": "vermeer-ahzcpp",
-    "title": "Redmi K70 (ahzcpp)",
-    "title_zh": "Redmi K70 (ahzcpp)"
+    "name": "models/vermeer",
+    "title": "vermeer",
+    "title_zh": "vermeer"
   },
   {
-    "name": "vermeer-xyyyds0106",
-    "title": "Redmi K70 (xyyyds0106)",
-    "title_zh": "Redmi K70 (xyyyds0106)"
+    "name": "models/vili",
+    "title": "vili",
+    "title_zh": "vili"
   },
   {
-    "name": "vermeer-yyx2025",
-    "title": "Redmi K70 (yyx2025)",
-    "title_zh": "Redmi K70 (yyx2025)"
+    "name": "models/vince",
+    "title": "vince",
+    "title_zh": "vince"
   },
   {
-    "name": "wayne",
-    "title": "Xiaomi Mi 6X (2018)",
-    "title_zh": "Xiaomi Mi 6X (2018)"
+    "name": "models/wayne",
+    "title": "wayne",
+    "title_zh": "wayne"
   },
   {
-    "name": "x9",
-    "title": "OPPO Find X9 (x9)",
-    "title_zh": "OPPO Find X9（x9）"
+    "name": "models/whyred",
+    "title": "whyred",
+    "title_zh": "whyred"
   },
   {
-    "name": "yunluo",
-    "title": "Redmi Pad format-2 qualification candidate; boot Mu and cust UniXNU must remain separate",
-    "title_zh": "Redmi Pad format-2 qualification candidate; boot Mu and cust UniXNU must remain separate"
+    "name": "models/x9",
+    "title": "x9",
+    "title_zh": "x9"
   },
   {
-    "name": "zeta",
-    "title": "Microsoft Surface Duo 2 (zeta)",
-    "title_zh": "Microsoft Surface Duo 2（zeta）"
+    "name": "models/yunluo",
+    "title": "yunluo",
+    "title_zh": "yunluo"
   },
   {
-    "name": "zorn",
-    "title": "Redmi K80 (zorn)",
-    "title_zh": "Redmi K80（zorn）"
+    "name": "models/zeta",
+    "title": "zeta",
+    "title_zh": "zeta"
+  },
+  {
+    "name": "models/zizhan",
+    "title": "zizhan",
+    "title_zh": "zizhan"
+  },
+  {
+    "name": "models/zorn",
+    "title": "zorn",
+    "title_zh": "zorn"
   }
 ]

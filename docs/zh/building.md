@@ -10,20 +10,25 @@
 
 阅读[前置条件](/zh/guide/requirements)，从[设备列表](/zh/devices/)选择移植。
 新设备先按[移植流程](/zh/porting/steps)操作。获取设备和 UEFI 仓库及其 submodule。
-例如 sheng 使用：
+设置目标移植的仓库地址与 defconfig：
 
 ```sh
+DEVICE_REPOSITORY=https://github.com/your-org/UniXNU-myboard
+UEFI_REPOSITORY=https://github.com/your-org/uefi-myboard
+DEFCONFIG=myboard_defconfig
 git clone --recurse-submodules https://github.com/UniXNU/UniXNU
-git clone --recurse-submodules https://github.com/UniXNU/UniXNU-sheng
-git clone --recurse-submodules https://github.com/UniXNU/uefi-sheng
+git clone --recurse-submodules "$DEVICE_REPOSITORY" UniXNU-device
+git clone --recurse-submodules "$UEFI_REPOSITORY" uefi-device
 cd UniXNU
-./unixnu defconfig sheng_defconfig -D ../UniXNU-sheng
+./unixnu defconfig "$DEFCONFIG" -D ../UniXNU-device
 ./unixnu fetch
 ./unixnu status --json
 ```
 
-替换为目标仓库和 defconfig 名称。`status` 显示最终 profile、版本、补丁顺序和输出目录。
+`status` 显示最终 profile、版本、补丁顺序和输出目录。
 `-D` 记录在 `out/state.json`，后续命令均在 UniXNU 主仓库执行。
+`--os VERSION` 为单条命令选择另一个 OS profile。macOS 构建的每条命令都带
+`--os macos-27`，并按 [macOS 配置](/zh/porting/macos)操作。
 
 **预期结果：** 设备/配置选择正确，源码路径已解析。
 
@@ -35,7 +40,7 @@ cp unixnu.example.toml unixnu.local.toml
 
 按[本地构建配置](/zh/reference/configuration#local-build-inputs)填写设备和 UEFI 路径、
 固件 DTB、平台身份及所需 kernelcache、trust-cache 和 Data seed。
-遵循设备输入清单；[sheng 构建输入](/zh/porting/migration#build-inputs)列出其 SDK、固件和 ABI 要求。
+按设备输入清单与[构建输入检查表](/zh/porting/migration#build-inputs)准备 SDK、固件和 ABI 输入。
 
 ```sh
 ./unixnu ipsw info
@@ -193,6 +198,7 @@ Linux 路径使用相同的选定 profile、归档配方和预链接检查。随
 | 选项 | 含义 |
 | --- | --- |
 | `-D DIR` | 设备仓库，首次使用后会记住。 |
+| `--os VERSION` | 本次运行的 OS profile：`17`、`26`、`27`、`macos-27` 或 `profiles/os` 目录名，默认取 `board.os_profile`。 |
 | `--out DIR` | 输出根目录，默认是本仓库的 `out/`。 |
 | `-j N` | 并行任务数，默认取 `JOBS` 或 CPU 数量。 |
 | `--target DEBUG\|RELEASE` | EDK II 构建目标，默认 `DEBUG`。 |
@@ -285,6 +291,13 @@ package 步骤用 EDK II 构建 `package/`，输出到 `out/<device>/<os_profile
 `--owner-trust-cache` 传入 owner 签名的包，包含原始缓存和额外模块。它替换 `--trust-cache`，并跳过 `[payload] trust_cache_sha256`。
 
 `--skip-setup` 在 `--data-ramdisk` 提供的 Data 种子副本中把 Setup 标记为完成。
+
+macOS 配置（`--os macos-27`）用 `scripts/make-macos-data-seed.py` 从系统卷的
+`/System/Library/Templates/Data` 生成 Data 种子。模板保留文件所有者，所以脚本以 root 运行。缺少种子时
+构建停止并打印 `sudo` 命令，输出路径为 `runtime/data.dbr`。`private/`、`Users/`、`Library/Preferences/` 和
+`Library/Keychains/` 下的文件被复制；模板中的其他文件成为指向系统卷模板中同一文件的符号链接，与 macOS 对
+`Data.symlink-patterns` 路径的处理相同，使种子能放进 payload。之后的构建保留这个种子。内核把它挂载到
+`/System/Volumes/Data`，并设置系统卷 `/usr/share/firmlinks` 中的 firmlink。
 
 ### userdata
 
