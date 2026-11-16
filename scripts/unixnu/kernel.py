@@ -230,17 +230,23 @@ def build(ctx, modules):
         env['XNU_MACHINE_CONFIG'] = str(ctx.board['kernel']['machine_config'])
     machine = ctx.board.get('kernel', {}).get('machine_config') or 'BCM2837'
     record = ctx.tree / f'build/xnu/ios-obj/DEVELOPMENT_ARM64_{machine}/osfmk/DEVELOPMENT/startup.o.json'
-    if not record.is_file():
+    # Upstream also requires the restored Kernel.framework headers before skipping the
+    # bootstrap pass; keep that check together with the board-selected machine config.
+    framework = ctx.tree / '.cache/fakeroot/System/Library/Frameworks/Kernel.framework/Versions/A'
+    headers_ready = any((framework / directory / 'kern/clock.h').is_file()
+                        for directory in ('Headers', 'PrivateHeaders'))
+    if not record.is_file() or not headers_ready:
         # The archive builders and the boot progress layer read compile records of the XNU build, which only an earlier
         # pass leaves behind. A first build from scratch therefore runs one pass without them; XNU_BOOTSTRAP makes it
         # skip the archive checks and link without the archives, so it stops at the link and only the records are
         # required of it.
-        log('kernel: bootstrap pass for the compile records')
+        log('kernel: bootstrap pass for compile records and kernel headers')
         subprocess_env = {**env, 'XNU_BOOT_PROGRESS': '0', 'XNU_BOOTSTRAP': '1'}
         try:
             run(['bash', script], cwd=ctx.tree, env=subprocess_env, log_file=ctx.logs / 'kernel-bootstrap.log')
         except Error:
-            if not record.is_file():
+            if not record.is_file() or not any((framework / directory / 'kern/clock.h').is_file()
+                                              for directory in ('Headers', 'PrivateHeaders')):
                 raise
     # Revalidate the selected source and regenerate headers on every archive build.
     # A pre-existing directory can belong to a different OS profile/revision.
