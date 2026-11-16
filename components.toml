@@ -570,3 +570,22 @@ runtime_identifiers = ["AppleBaseband", "AppleBasebandPCIControl", "AppleBaseban
 build_stage = "kernel"
 build = ["build-qcom-baseband.py"]
 outputs = ["build/qcom-baseband/libQcomBaseband.a"]
+
+[[component]]
+id = "DitingPlatform24"
+kind = "kit"
+function = "Diting SM8475 platform aggregate, including A730, QCA6490, storage, input and power"
+scope = "device"
+repository = "https://github.com/Chengdong-Yu/UniXNU-pong.git"
+revision = "62ff5bae93fb040f7d80a42f9187c3968d643249"
+path = "kits/DitingPlatform24"
+hardware = ["SM8475", "Adreno730", "QCA6490", "TFA9873", "Goodix Berlin-D"]
+os_abi = ["ipados-18.7.10-22H374"]
+board_dependencies = ["Diting Android DT", "Diting modem/vendor firmware", "22H374 kernelcache and dyld cache"]
+verified_devices = []
+dependencies = []
+source_files = ["drivers/ArmCpu/ArmCpu.cpp", "drivers/DitingWifi/DitingWifiPlatform.cpp", "drivers/DitingPower/DitingAudio.cpp"]
+runtime_identifiers = ["NativeAdreno", "DitingAudioService", "DitingAudioUserClient", "DitingUfsBlock", "DarwinBoot24.efi"]
+build_stage = "kernel"
+build = ["{component}/build-with-runtime.py", "--artifact-dir", "{out}/kernel", "--tree", "{tree}"]
+outputs = ["kernel/mach.development.diting"]
