@@ -409,9 +409,23 @@ def generate(dtb, config, *, unique_chip_id=None, data=False, trust=False, addon
     if len(set(names)) != len(names):
         raise Error('Exported ADT hardware names must be unique')
     base, size = arm_io_window(hardware)
+    board_arm = platform.get('arm-io', {})
+    arm_children = []
+    for name, entry in zip(names, hardware):
+        props = hardware_properties(entry, handles, base)
+        # Board [adt.arm-io] tables extend or add nodes the DTS cannot express:
+        # the hardware export keeps a fixed property allowlist, so driver-specific
+        # properties (with typed values) come from the board instead.
+        if name in board_arm:
+            props.extend(typed_properties({kind: value for kind, value in board_arm[name].items()
+                                           if kind in PROPERTY_TYPES}))
+        arm_children.append(node(name, props))
+    for name, table in board_arm.items():
+        if name not in names:
+            arm_children.append(platform_node(name, table))
     children.append(node('arm-io', [('device_type', b'arm-io\0'), ('#address-cells', struct.pack('<I', 2)),
                          ('#size-cells', struct.pack('<I', 2)), ('ranges', struct.pack('<QQQ', 0, base, size))],
-                         [node(name, hardware_properties(entry, handles, base)) for name, entry in zip(names, hardware)]))
+                         arm_children))
     for name in ('defaults', 'options', 'product', 'buttons'):
         if name in platform or name in ('defaults', 'options', 'product'):
             children.append(platform_node(name, platform.get(name, {})))
