@@ -1,5 +1,7 @@
 # Adreno740
 
+挂起检查在恢复 GPU 前保存 CP 状态，并保留到下一次挂起。`native_adreno_stall_hang` 标识快照所属的挂起。对于地址高 32 位为零的缺页，`native_adreno_stall_fault` 在该任务的 IB1 和最多 512 个引用的 IB2 中搜索地址低位，以及后接零的邻近基址。这些匹配是供检查的候选值，不代表已经解码的地址操作数。新快照会清除上一次搜索结果。
+
 Adreno740 实现 SM8550 上的 A740 内核 GPU 接口，负责内存映射、命令提交、fence 和 CP/GMU 初始化。设备仓库提供固件、电源投票和显示集成。适配入口见 [GPU 适配流程](/zh/porting/gpu)。
 
 ## 运行路径
@@ -20,6 +22,8 @@ Metal → AdrenoMetal → metal2vulkan → Turnip → Darwin KMD → Adreno740 �
 每个环独立记录已排队的上下文和页表。CP 在 `CP_SMMU_TABLE_UPDATE` 后记录实际执行的页表，抢占恢复该快照。切环保存 GMEM，执行性能计数器 SRAM postamble，并保持 GMU keepalive，直到目标环 WPTR 恢复。读指针使用各环自己的 shadow。fence 历史表绕回后，未完成任务仍保留正确的环归属。
 
 参考实现用 `gpu-preempt=2` 启用模式 2。模式 1 仅将 low/background 请求送往 ring 1，模式 0 使用单环。由 CPU 切换页表时也仅使用 ring 0。切环超时为 1 秒。切换失败后停止抢占，恢复流程在 ring 0 重放待执行任务，诊断记录保留失败信息。
+
+调度恢复从最早未完成的 fence 开始重放。捕获到 SMMU 故障时，按故障作业策略恢复，并在复位前记录故障。每次失败切换累计一次超时。GPU trace 事件 70 保存恢复 fence、已完成前缀、重放数量、策略标志和 SMMU 寄存器。
 
 ## 构建和验证
 

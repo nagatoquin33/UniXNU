@@ -35,6 +35,11 @@
     "title_zh": "andromeda"
   },
   {
+    "name": "models/apollo",
+    "title": "apollo",
+    "title_zh": "apollo"
+  },
+  {
     "name": "models/asteroids",
     "title": "asteroids",
     "title_zh": "asteroids"
@@ -53,6 +58,11 @@
     "name": "models/bbk-a2",
     "title": "bbk-a2",
     "title_zh": "bbk-a2"
+  },
+  {
+    "name": "models/bluejay",
+    "title": "bluejay",
+    "title_zh": "bluejay"
   },
   {
     "name": "models/braveark",
@@ -123,6 +133,11 @@
     "name": "models/dada2",
     "title": "dada2",
     "title_zh": "dada2"
+  },
+  {
+    "name": "models/dagu",
+    "title": "dagu",
+    "title_zh": "dagu"
   },
   {
     "name": "models/dali",
@@ -230,6 +245,11 @@
     "title_zh": "g0245d"
   },
   {
+    "name": "models/garnet",
+    "title": "garnet",
+    "title_zh": "garnet"
+  },
+  {
     "name": "models/gauguin",
     "title": "gauguin",
     "title_zh": "gauguin"
@@ -250,6 +270,11 @@
     "title_zh": "gta4l"
   },
   {
+    "name": "models/gtaxllte",
+    "title": "gtaxllte",
+    "title_zh": "gtaxllte"
+  },
+  {
     "name": "models/gts7fewifi",
     "title": "gts7fewifi",
     "title_zh": "gts7fewifi"
@@ -258,6 +283,11 @@
     "name": "models/gts7xlwifi",
     "title": "gts7xlwifi",
     "title_zh": "gts7xlwifi"
+  },
+  {
+    "name": "models/gts9u",
+    "title": "gts9u",
+    "title_zh": "gts9u"
   },
   {
     "name": "models/gts9uwifi",
@@ -285,6 +315,11 @@
     "title_zh": "hero2lte"
   },
   {
+    "name": "models/hotdog",
+    "title": "hotdog",
+    "title_zh": "hotdog"
+  },
+  {
     "name": "models/houji",
     "title": "houji",
     "title_zh": "houji"
@@ -308,6 +343,11 @@
     "name": "models/j716f",
     "title": "j716f",
     "title_zh": "j716f"
+  },
+  {
+    "name": "models/judyp",
+    "title": "judyp",
+    "title_zh": "judyp"
   },
   {
     "name": "models/kebab",
@@ -475,6 +515,11 @@
     "title_zh": "odin3"
   },
   {
+    "name": "models/onclite",
+    "title": "onclite",
+    "title_zh": "onclite"
+  },
+  {
     "name": "models/oneplus13t",
     "title": "oneplus13t",
     "title_zh": "oneplus13t"
@@ -490,6 +535,11 @@
     "title_zh": "opd2515"
   },
   {
+    "name": "models/opi5plus",
+    "title": "opi5plus",
+    "title_zh": "opi5plus"
+  },
+  {
     "name": "models/orangepi5",
     "title": "orangepi5",
     "title_zh": "orangepi5"
@@ -500,9 +550,19 @@
     "title_zh": "pandora"
   },
   {
+    "name": "models/panther",
+    "title": "panther",
+    "title_zh": "panther"
+  },
+  {
     "name": "models/pclm10",
     "title": "pclm10",
     "title_zh": "pclm10"
+  },
+  {
+    "name": "models/pd1936",
+    "title": "pd1936",
+    "title_zh": "pd1936"
   },
   {
     "name": "models/pd2049",
@@ -610,6 +670,11 @@
     "title_zh": "rmx3823"
   },
   {
+    "name": "models/rodin",
+    "title": "rodin",
+    "title_zh": "rodin"
+  },
+  {
     "name": "models/rothko",
     "title": "rothko",
     "title_zh": "rothko"
@@ -695,6 +760,11 @@
     "title_zh": "tb375fc"
   },
   {
+    "name": "models/tb710fu",
+    "title": "tb710fu",
+    "title_zh": "tb710fu"
+  },
+  {
     "name": "models/thor",
     "title": "thor",
     "title_zh": "thor"
@@ -773,6 +843,11 @@
     "name": "models/x9",
     "title": "x9",
     "title_zh": "x9"
+  },
+  {
+    "name": "models/xun",
+    "title": "xun",
+    "title_zh": "xun"
   },
   {
     "name": "models/yunluo",

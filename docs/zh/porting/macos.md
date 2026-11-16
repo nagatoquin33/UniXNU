@@ -24,6 +24,8 @@ UniXNU 的 `profiles/os/macos-27.3-26C5035r/profile.toml`：
 Darwin 26 系统调用与内核接口、macOS 机器选项、Data firmlink、位于 Data 上的 VM 与
 Hardware 卷，以及应用 cryptex 挂载。
 
+签名文本修补按原始字节校验。代码签名检查使用有界快照，APFS 压缩块检查使用私有副本，已驻留的可执行页面保留配置的指令。
+
 ## 1. 检查主机和输入 {#inputs}
 
 macOS 构建在装有 Xcode 的 Mac 上进行。除[通用前置条件](/zh/guide/requirements)外还需要：
@@ -35,7 +37,7 @@ macOS 构建在装有 Xcode 的 Mac 上进行。除[通用前置条件](/zh/guid
 | Kernelcache | 从 IPSW 提取，并按 `kernelcache_sha256` 校验 |
 | 信任缓存 | `[payload.runtime] trust_components` 指定进入 owner 信任包的 IPSW 成员 |
 | Data seed | 以 root 身份从系统卷制作一次，见[步骤 4](#data-seed) |
-| root 权限 | 制作 Data seed 需要 `sudo` |
+| root 权限 | 制作 Data seed 需要 `sudo`，只读枚举 Metal 库需要非交互 `sudo` |
 
 ## 2. 在设备仓库加入 macOS 的值 {#device}
 
@@ -127,19 +129,71 @@ macOS 补丁序列增加的内核参数：
 ./unixnu build kernel payload --os macos-27
 ```
 
-没有 seed 时，命令在编译前停止并打印：
+没有 seed 时，命令在编译前停止，打印创建 seed 的命令，其中包含 OS 镜像、输出路径和
+`data_gib`。
+
+### 创建账户并跳过 Setup {#account}
+
+在 UniXNU 仓库中执行，使用构建命令打印的路径和大小。
+交互输入短用户名、显示名称和隐藏密码：
 
 ```sh
-sudo python3 <tree>/scripts/make-macos-data-seed.py <OS image> <output>/runtime/data.dbr --gib <data_gib>
+sudo python3 scripts/make-macos-data-seed.py \
+  "<OS image>" "<output>/runtime/data.dbr" --gib "<data_gib>" \
+  --skip-setup --interactive-user --auto-login
 ```
 
-执行该命令后重新构建。脚本复制系统卷的 `/System/Library/Templates/Data`，并保留文件属主。
-可选参数：
+脚本创建本地管理员及其主目录，保留模板文件属主，并跳过首次开机和首次登录时的设置助理。
+输出文件必须是新 seed。
+
+提示默认使用 `admin` 和 `Admin`。`sudo` 验证构建主机账户的密码；
+交互输入的密码用于新建的 macOS 管理员账户。
+
+自动化时，将 `--interactive-user` 替换为 `--user NAME:PASSWORD --real-name NAME`，
+或从私有 JSON 文件读取凭据：
+
+```sh
+sudo -v
+sudo -n python3 scripts/make-macos-data-seed.py \
+  "<OS image>" "<output>/runtime/data.dbr" --gib "<data_gib>" \
+  --skip-setup --user-stdin --auto-login < account.json
+```
+
+`account.json` 包含字符串字段 `name`、`password` 和可选的 `real_name`。
+`--real-name` 优先于 JSON 中的显示名称。提供凭据后不再显示账户输入提示。
+
+使用该 seed 构建并打包：
+
+```sh
+./unixnu build kernel payload --os macos-27 \
+  --data-ramdisk "<output>/runtime/data.dbr"
+./unixnu bootimg --os macos-27 \
+  --data-ramdisk "<output>/runtime/data.dbr"
+```
+
+sheng 刷入全新 userdata 后，选择 **Initialize macOS Data and boot**，
+再确认 **Initialize Data and boot**。这会清空 macOS Data，并从 seed 初始化持久存储。
+后续开机选择 **Boot**，保留 Data。账户和设置助理配置来自 seed；
+`--skip-setup` 在制作 seed 时传入。
+
+sheng 的 macOS 配置使用固定 SHA-256 的固件模板完成 ABL 封装。
+`unixnu bootimg` 只替换本次固件构建生成的 DarwinBoot，保留已验证的 BootShim、
+设备固件、DTB 和 Android 头参数。payload 为 187 MiB；启动镜像超过 193 MiB 时停止打包。
+菜单等待按键。
+
+模板缓存在 `out/downloads`。离线构建时，将 `UNIXNU_BOOT_TEMPLATE` 指向对应的
+`.img.xz`，仍会核对校验值。`boot/boot.json` 记录模板、加载器和实际固件的哈希。
+
+制作 seed 的参数：
 
 | 参数 | 作用 |
 | --- | --- |
 | `--skip-setup` | 把设置助理标记为已完成 |
 | `--user NAME:PASSWORD` | 添加本地管理员及其主目录 |
+| `--real-name NAME` | 设置管理员的显示名称，短用户名与 `/Users/NAME` 路径保持不变 |
+| `--user-stdin` | 从标准输入的 JSON 对象读取 `name`、`password` 和可选的 `real_name` |
+| `--interactive-user` | 交互输入账户名、显示名称和密码 |
+| `--auto-login` | 开机自动登录指定账户，供无人值守测试使用 |
 | `--keyboard-type PRODUCT-VENDOR-COUNTRY=TYPE` | 记录键盘布局类型，键盘设置助理不再询问 |
 | `--volume-uuid UUID` | 为 Data 卷指定固定 UUID，新 seed 可以替换旧 seed 而无需重新构建内核 |
 

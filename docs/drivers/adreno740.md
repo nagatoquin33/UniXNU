@@ -21,6 +21,8 @@ Each ring tracks its queued context and page table. The CP records the executed 
 
 The reference enables mode 2 with `gpu-preempt=2`. Mode 1 sends only low/background requests to ring 1; mode 0 uses one ring. CPU-only page-table switching also uses ring 0. The switch watchdog is 1 s. A failed switch disables further preemption and recovery replays pending work on ring 0; diagnostics retain the failure.
 
+Scheduling recovery replays every unfinished job from the oldest fence. A captured SMMU fault selects guilty-job recovery and records the fault before reset. Each failed switch contributes one timeout. GPU trace event 70 records the recovery fence, completed prefix, replay count, policy flags and SMMU registers.
+
 ## Build and verification
 
 From the resolved iOS 27 target tree, with `UNIXNU_XNU_ARCH=arm64e` and `UNIXNU_IOS_VERSION=27.0`:
@@ -36,3 +38,5 @@ The host scheduling check runs the real ring, preemption and submit code over so
 See [AdrenoMetal](/drivers/adreno-metal) for Metal interfaces, caches and plugin staging.
 
 Frame diagnostics retain allocation, command, completion and GPU/display timing. Pixel capture is disabled. See [GPU frame diagnostics](/porting/gpu-diagnostics).
+
+The hang check captures CP state before recovery and retains it until the next hang. `native_adreno_stall_hang` identifies the snapshot. For faults whose upper address word is zero, `native_adreno_stall_fault` searches the job's IB1s and up to 512 referenced IB2s for the low word and nearby bases followed by zero. These are candidates for inspection, not decoded address operands. A new snapshot clears the previous search.

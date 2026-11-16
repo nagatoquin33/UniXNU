@@ -165,8 +165,45 @@ arm64e 采样器先去除返回地址的 PAC，再检查和编码地址；栈区
 2. 为主机执行脚本配置准确的设备身份、测试镜像、读取器或 recovery 镜像、输出目录和超时。
 3. 脚本启动测试镜像，观察返回，启动选定的读取器，取回并解码日志，确认最终回到 bootloader。Recovery 读取器按手动步骤执行 `adb reboot recovery`、`adb wait-for-device` 和 `adb pull`。
 4. 超时后记录失败阶段，按板型文档进入 bootloader 或 recovery。保留本次镜像和部分证据。
-5. 每次修改一项内容后重复测试。在[适配记录](/zh/porting/records)中填写版本、参数、检查点、复位结果、读取器环境、输出目录和未解决错误。
+5. 在[适配记录](/zh/porting/records)中填写版本、参数、检查点、复位结果、读取器环境、输出目录和未解决错误。
 
 自动脚本沿用手动循环的顺序。支持 recovery 访问的板型使用相同结构并替换为 ADB 命令。
+
+Recovery 充电时，运行 `python3 scripts/arm-sheng-recovery-return.py --serial <serial> --seconds 7200` 启用返回 fastboot 的定时器。再次运行会更新单调时钟的截止时间。
+
+sheng 的定时 macOS 镜像从设备仓库运行：
+
+```sh
+SERIAL=<serial> READER=<sheng-linux-log.img> OUT=<capture-directory> \
+  scripts/run-sheng-unattended.sh <boot.img> 7500
+```
+
+首次安装时加入 `USERDATA=/path/to/userdata.sparse`。脚本核对 sheng 产品名与完整分区 sparse 容量，写入 userdata，再执行定时启动和日志采集。后续启动使用保留 Data 的镜像，并保持 `USERDATA` 未设置。
+
+脚本生成以 `s` 开头的六字符 `build-tag`，并与采集文件头核对。字母前缀让 XNU 启动参数解析器按字符串读取。`cycle.json` 记录预期标签、采集匹配结果、启动确认、测试及读取器耗时、读取器退出状态和最终可响应命令的 fastboot 状态。
+
+主机脚本在采集期间保持 Mac 唤醒。两小时会话使用 `autoreset=7200 diag=1 diag-export=6900`，Linux 读取器另有 300 秒返回定时器。每次 RAM 启动前，脚本刷新当前槽位的可启动状态和重试次数，`cycle.json` 记录最终的 fastboot 响应。
+
+`scripts/repack-sheng-boot.py INPUT OUTPUT --partition-bytes <bytes>` 按实测启动分区容量调整 payload。使用 `--kernel-arg NAME=VALUE` 或 `--remove-arg NAME` 修改 XNU 参数。首次安装使用 `data-reset=1`，后续预编译启动保留 Data 和按构建区分的着色器 checkpoint。
+
+`scripts/make-userdata-full.py --zstd userdata-root.img.zst <分区字节数> userdata.sparse` 将根镜像直接转换为 Android sparse 格式，并将剩余分区填充为零。磁盘需容纳压缩根镜像和 sparse 输出。
+
+在主仓库运行 `python3 scripts/build-gpu-validation-deps.py` 构建 arm64e Vulkan 诊断依赖。在设备仓库中，使用匹配的验收工具 `files` 目录准备 RAM 启动镜像：
+
+```sh
+python3 scripts/prepare-sheng-gpu-lab.py boot.img gpu-lab.img \
+  --tools <acceptance-files> --tools ../UniXNU/build/gpu-validation-deps/files \
+  --plugin ../UniXNU/build/adreno-metal-plugin-macos27
+```
+
+Actions 构建可使用 `scripts/fetch-actions-artifact.py OWNER/REPOSITORY RUN_ID ARTIFACT OUTPUT --file prime-list.txt --file prime-list.json` 按 HTTP 字节范围获取指定文件。省略 `--file` 时获取产物中的文件，下载直接写入输出目录并检查 ZIP 完整性。1 MiB 以内的产物缓存在内存中，加快日志读取。使用 `--file NAME` 重新运行可续传未完成的文件，下载链接自动刷新。
+
+已安装的根镜像所用 OS 镜像及策略保持一致时，以 `root_storage=false` 触发 `macos-lab.yml`，构建 boot、内核和 payload 产物。默认设置同时构建 userdata 镜像。
+
+准备脚本通过 `--core <resolved-tree>` 选择构建树，读取匹配 Turnip 构建的 ICD 元数据，加入签名工具和 Shader Cache App，将代码标识追加到 owner trust bundle。使用 `--manual-session --preserve-data --autoreset 7200` 生成保留固件返回定时器的手动桌面会话。用户从“应用程序”打开 Shader Cache 并开始编译。`--shader-cache-view` 打开 App 窗口，`--graphics-view` 打开系统设置，`--graphics-comparison` 运行固定交互采集。
+
+逻辑 FAT 容量为 256 MiB。sheng 配合支持该格式的固件，将其按 1 MiB 块独立压缩为 UEFI 流（`UNXNFAT1`）；编码后的 ramdisk 必须符合 190 MiB 板级上限。`UniXNURamDiskDxe` 使用 1 MiB 读取缓存提供逻辑 FAT。
+
+无人值守脚本通过限时的 `fastboot getvar product` 请求确认设备就绪。启动确认超时后，脚本继续等待镜像的自动返回计时；最终状态以成功的命令响应为准。
 
 **结果：** 每次测试都有可识别的证据目录和返回路径。继续完成其余[启动验证阶段](/zh/porting/bring-up)。

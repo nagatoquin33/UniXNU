@@ -18,13 +18,15 @@ blocks of the replaced files. --volume-uuid gives the Data volume the UUID the k
 (CONFIG_XNU_OWNER_DATA_VOLUME_UUID), so a new seed can replace an older one without a kernel build.
 
     sudo python3 scripts/make-macos-data-seed.py OS OUTPUT --gib N [--skip-setup] [--user NAME:PASSWORD [--auto-login]]
-        [--volume-uuid UUID]
+        [--user-stdin | --interactive-user] [--real-name DISPLAY_NAME] [--volume-uuid UUID]
 
 --skip-setup marks Setup Assistant done (/private/var/db/.AppleSetupDone: loginwindow shows its login window instead of Language
 Chooser and Setup Assistant, which would also ask to activate the Mac) and writes a managed SkipSetupItems, so a new user's first
 login skips Setup Assistant's per-user panes. --user adds a local administrator (uid 501, staff and admin, SALTED-SHA512-PBKDF2
 shadow hash) to the directory (/private/var/db/dslocal), as macOS-DroidVM's stage-gpu-plugin.py does; loginwindow creates its home
-on the first login. With --user the seed also holds that user's home, made from the user template, with .skipbuddy in it: a home that
+on the first login. --real-name sets its display name without changing its short name or home. --user-stdin reads a JSON object
+with name and password fields instead of --user, so a calling tool need not place credentials in its process arguments. With --user
+the seed also holds that user's home, made from the user template, with .skipbuddy in it: a home that
 loginwindow makes on the first login gets Setup Assistant's MiniBuddy (MiniLauncherPlugin sets MiniBuddyLaunch), which with every
 pane skipped never finishes, so loginwindow never starts the Dock and Finder (macOS-DroidVM makes the home with a boot job for the
 same reason; macOS run42: black screen behind the first MiniBuddy pane). --keyboard-type PRODUCT-VENDOR-COUNTRY=TYPE (decimal, may
@@ -45,6 +47,8 @@ import subprocess
 import sys
 import tempfile
 import uuid
+
+from macos_account import add_account_arguments, read_account
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'drivers/DarwinBoot/Test'))
@@ -73,17 +77,18 @@ def main():
     parser.add_argument('--gib', type=int, required=True)
     parser.add_argument('--skip-setup', action='store_true',
                         help='mark Setup Assistant done (/private/var/db/.AppleSetupDone)')
-    parser.add_argument('--user', help='NAME:PASSWORD of a local administrator to add')
+    add_account_arguments(parser)
     parser.add_argument('--keyboard-type', action='append', default=[], metavar='PRODUCT-VENDOR-COUNTRY=TYPE',
                         help='a keyboard whose layout type is known (40 = ANSI); may repeat')
     parser.add_argument('--auto-login', action='store_true',
-                        help='log the --user in at boot (unattended test seeds only)')
+                        help='log the selected account in at boot (unattended test seeds only)')
     parser.add_argument('--volume-uuid', type=uuid.UUID, help='the Data volume UUID (default: a new one)')
     args = parser.parse_args()
-    if args.auto_login and not args.user:
-        parser.error('--auto-login needs --user')
     if os.geteuid() != 0:
         parser.error('run as root: the Data template keeps its owners')
+    read_account(parser, args)
+    if args.auto_login and not args.user:
+        parser.error('--auto-login needs --user, --user-stdin or --interactive-user')
     if args.os.is_file():
         with os_mount(args.os) as point:
             build(parser, args, point)
@@ -182,7 +187,7 @@ def write_root(path, data, mode):
     path.chmod(mode)
 
 
-def add_user(dslocal, name, password, uid=501):
+def add_user(dslocal, name, password, uid=501, real_name=None):
     """A local administrator as System Settings writes one: the user record and its admin and staff memberships."""
     salt, iterations = os.urandom(32), 50000
     entropy = hashlib.pbkdf2_hmac('sha512', password.encode(), salt, iterations, 128)
@@ -190,7 +195,7 @@ def add_user(dslocal, name, password, uid=501):
                             fmt=plistlib.FMT_BINARY)
     guid = str(uuid.uuid4()).upper()
     write_root(dslocal / 'users' / (name + '.plist'), plistlib.dumps({
-        'name': [name], 'realname': [name], 'uid': [str(uid)], 'gid': ['20'], 'home': ['/Users/' + name], 'shell': ['/bin/zsh'],
+        'name': [name], 'realname': [real_name or name], 'uid': [str(uid)], 'gid': ['20'], 'home': ['/Users/' + name], 'shell': ['/bin/zsh'],
         'generateduid': [guid], 'passwd': ['********'], 'authentication_authority': [';ShadowHash;HASHLIST:<SALTED-SHA512-PBKDF2>'],
         'ShadowHashData': [shadow], '_writers_passwd': [name], '_writers_realname': [name], '_writers_hint': [name]},
         fmt=plistlib.FMT_BINARY), 0o600)
@@ -316,6 +321,24 @@ def new_volume(path, size):
         subprocess.run(['hdiutil', 'detach', attached['system-entities'][0]['dev-entry']], check=True)
 
 
+def prepare_output_directory(directory, owner):
+    """Return newly created output directories to sudo's caller without changing existing paths."""
+    missing = []
+    current = directory
+    while not current.exists():
+        missing.append(current)
+        current = current.parent
+    for path in reversed(missing):
+        try:
+            path.mkdir()
+        except FileExistsError:
+            if not path.is_dir():
+                raise
+            continue
+        if owner[0] is not None and owner[1] is not None:
+            os.chown(path, int(owner[0]), int(owner[1]))
+
+
 def build(parser, args, os_mount):
     template = os_mount / TEMPLATE
     if not (os_mount / 'sbin/launchd').is_file() or not (os_mount / 'usr/share/firmlinks').is_file():
@@ -327,7 +350,7 @@ def build(parser, args, os_mount):
     if not 3 <= args.gib <= 1024:
         parser.error('--gib must be in 3..1024')
     owner = os.environ.get('SUDO_UID'), os.environ.get('SUDO_GID')
-    args.output.parent.mkdir(parents=True, exist_ok=True)
+    prepare_output_directory(args.output.parent, owner)
     with tempfile.TemporaryDirectory(prefix='new-macos-data-', dir=args.output.parent) as td:
         work = Path(td)
         raw = work / 'seed.cdr'
@@ -340,7 +363,7 @@ def build(parser, args, os_mount):
                 os.chown(done, 0, 0)
                 done.chmod(0o644)
             if args.user:
-                add_user(scratch / DSLOCAL, *args.user.split(':', 1))
+                add_user(scratch / DSLOCAL, *args.user.split(':', 1), real_name=args.real_name)
             link_template_directories(scratch)
             kept, linked = link_template_files(scratch)
             if args.skip_setup:   # after the links: Library/Managed Preferences is not kept as real files otherwise

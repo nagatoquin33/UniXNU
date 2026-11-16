@@ -221,12 +221,49 @@ geometry or the selected reader command.
    `adb pull` in the same sequence as the manual cycle.
 4. On timeout, record the failed stage and use the board's documented bootloader
    or recovery entry procedure. Keep the images and partial evidence.
-5. Repeat after one change. Record revisions, arguments, checkpoint, reset
-   result, reader environment, output directory and unresolved errors in the
+5. Record revisions, arguments, checkpoint, reset result, reader environment,
+   output directory and unresolved errors in the
    [porting record](/porting/records).
 
 The runner follows the same sequence as the manual cycle. A board with recovery
 access can use the same runner structure with ADB commands.
+
+For recovery charging, `python3 scripts/arm-sheng-recovery-return.py --serial <serial> --seconds 7200` arms a fastboot return timer. Running it again renews the monotonic deadline.
+
+For a timed sheng macOS image, run from the device checkout:
+
+```sh
+SERIAL=<serial> READER=<sheng-linux-log.img> OUT=<capture-directory> \
+  scripts/run-sheng-unattended.sh <boot.img> 7500
+```
+
+For the first installation, add `USERDATA=/path/to/userdata.sparse`. The runner checks the sheng product and full-partition sparse geometry, writes userdata, then starts the timed boot and log capture. Subsequent runs use the preserved-Data image with `USERDATA` unset.
+
+The runner assigns a six-character `build-tag` beginning with `s` and matches it against the captured header. The letter prefix keeps XNU's boot-argument parser in string mode. `cycle.json` records the expected tag, capture match, boot acknowledgement, elapsed test and reader time, the reader exit status and the final command-responsive fastboot state.
+
+The host runner keeps the Mac awake. A two-hour session uses `autoreset=7200 diag=1 diag-export=6900`; the Linux reader has its own 300-second return timer. The runner refreshes the selected slot's bootability and retry budget before each RAM boot. `cycle.json` records the final fastboot response.
+
+`scripts/repack-sheng-boot.py INPUT OUTPUT --partition-bytes <bytes>` fits a payload to the measured boot partition. Use `--kernel-arg NAME=VALUE` or `--remove-arg NAME` to change an XNU argument. The first installation uses `data-reset=1`; subsequent priming runs retain Data and the build-specific shader checkpoints.
+
+`scripts/make-userdata-full.py --zstd userdata-root.img.zst <partition-bytes> userdata.sparse` streams the root image into Android sparse format and fills the remaining partition with zeros. Keep space for the compressed root and sparse output.
+
+Build the arm64e Vulkan diagnostic dependencies from the main checkout with `python3 scripts/build-gpu-validation-deps.py`. Prepare a RAM boot from the device checkout using the matching acceptance tool's `files` directory:
+
+```sh
+python3 scripts/prepare-sheng-gpu-lab.py boot.img gpu-lab.img \
+  --tools <acceptance-files> --tools ../UniXNU/build/gpu-validation-deps/files \
+  --plugin ../UniXNU/build/adreno-metal-plugin-macos27
+```
+
+For Actions builds, `scripts/fetch-actions-artifact.py OWNER/REPOSITORY RUN_ID ARTIFACT OUTPUT --file prime-list.txt --file prime-list.json` retrieves selected files through HTTP byte ranges. Omit `--file` to retrieve the artifact's files. Downloads stream directly to the output directory and verify ZIP integrity. Artifacts up to 1 MiB are buffered in memory for quick log retrieval. Rerun with `--file NAME` to resume an incomplete transfer; download links are refreshed automatically.
+
+For an installed root with unchanged OS images and policies, dispatch `macos-lab.yml` with `root_storage=false` to build boot, kernel and payload artifacts. The default also builds the userdata image.
+
+The preparer accepts `--core <resolved-tree>` and uses ICD metadata from the matching Turnip build, adds signed tools and the Shader Cache app, and appends their code identities to the owner trust bundle. Use `--manual-session --preserve-data --autoreset 7200` for a manual desktop session with the firmware return timer. Shader Cache is available in Applications; the user starts compilation from its window. `--shader-cache-view` opens that window, `--graphics-view` opens System Settings, and `--graphics-comparison` runs the fixed interaction capture.
+
+The logical FAT is 256 MiB. With matching firmware, sheng stores it as independently compressed 1 MiB UEFI chunks (`UNXNFAT1`); encoded ramdisks must fit the 190 MiB board limit. `UniXNURamDiskDxe` exposes the logical FAT through a 1 MiB read cache.
+
+The unattended runner confirms readiness with a bounded `fastboot getvar product` request. A boot acknowledgement timeout starts the image return wait; the final state requires a successful command response.
 
 **Result:** each test produces an identifiable evidence directory and a recorded
 return path. Continue the remaining [bring-up stages](/porting/bring-up).
